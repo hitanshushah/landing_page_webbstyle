@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebBuilder - Create Your Professional Website in Minutes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .gradient-bg-ocean {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+        }
+        .gradient-bg-sunset {
+            background: linear-gradient(135deg, #f59e0b 0%, #dc2626 100%);
+        }
+        .gradient-bg-sky {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-2xl font-bold text-primary-600">WebBuilder</h1>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#features" class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Features</a>
+                        <a href="#templates" class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Templates</a>
+                        <a href="#color-schemes" class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Colors</a>
+                        <a href="#pricing" class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Pricing</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Sign In</button>
+                    <button class="bg-primary-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-primary-700 transition-colors">Get Started</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-16 bg-gradient-to-br from-primary-50 to-blue-100 min-h-screen flex items-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="text-4xl md:text-6xl font-bold text-gray-900 leading-tight">
+                        Build Your Dream
+                        <span class="text-primary-600">Website</span>
+                        in Minutes
+                    </h1>
+                    <p class="mt-6 text-xl text-gray-600 leading-relaxed">
+                        Create stunning, professional websites without any coding knowledge. 
+                        Choose from beautiful templates and customize everything to match your brand.
+                    </p>
+                    <div class="mt-8 flex flex-col sm:flex-row gap-4">
+                        <button class="bg-primary-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary-700 transition-colors shadow-lg">
+                            Start Building Free
+                        </button>
+                        <button class="border-2 border-primary-600 text-primary-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary-600 hover:text-white transition-colors">
+                            Watch Demo
+                        </button>
+                    </div>
+                    <div class="mt-8 flex items-center space-x-6">
+                        <div class="flex items-center">
+                            <i class="fas fa-star text-yellow-400 mr-2"></i>
+                            <span class="text-gray-700 font-medium">4.9/5 Rating</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-users text-primary-600 mr-2"></i>
+                            <span class="text-gray-700 font-medium">50,000+ Users</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="bg-white rounded-2xl shadow-2xl overflow-hidden transform rotate-3 hover:rotate-0 transition-transform duration-300">
+                        <img src="assets/hero.png" alt="WebBuilder Dashboard Preview" class="w-full h-auto object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Features Section -->
+    <section id="features" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    Everything You Need to Build
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Powerful features designed to help you create professional websites that stand out from the crowd.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow border-l-4 border-primary-500">
+                    <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-database text-primary-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Smart CMS</h3>
+                    <p class="text-gray-600">Add and manage your content easily. Hide specific data from your website with granular control over what's visible to visitors.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow border-l-4 border-green-500">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-globe text-green-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Custom Subdomain</h3>
+                    <p class="text-gray-600">Get your own subdomain instantly (yourname.webbuilder.com) or connect your custom domain with ownership verification.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow border-l-4 border-purple-500">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-crown text-purple-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Premium Templates</h3>
+                    <p class="text-gray-600">Access exclusive premium templates and unlimited color schemes. Create unique designs that reflect your brand.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow border-l-4 border-yellow-500">
+                    <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-mobile-alt text-yellow-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Mobile Responsive</h3>
+                    <p class="text-gray-600">All websites are automatically optimized for mobile devices, ensuring a perfect experience on any screen.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow border-l-4 border-red-500">
+                    <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-palette text-red-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Customize Color Scheme</h3>
+                    <p class="text-gray-600">Unlimited color customization with professional color schemes. Create unique designs that perfectly match your brand identity.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow border-l-4 border-indigo-500">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-globe-americas text-indigo-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Personal Domain & Verification</h3>
+                    <p class="text-gray-600">Connect your custom domain with easy ownership verification. Get your professional web address that represents your brand.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Templates Section -->
+    <section id="templates" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    Choose Your Perfect Template
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Start with a beautiful template and customize it to match your unique style and brand.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Nova Template -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://minio.dev.hitanshushah.com/templates/nova.png')"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Nova</h3>
+                        <p class="text-gray-600 mb-4">Modern and clean design perfect for professionals and businesses.</p>
+                        <button onclick="openTemplatePreview('nova')" class="w-full bg-primary-600 text-white py-2 rounded-lg hover:bg-primary-700 transition-colors">Preview</button>
+                    </div>
+                </div>
+                
+                <!-- Astra Template -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://minio.dev.hitanshushah.com/templates/astra.png')"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Astra</h3>
+                        <p class="text-gray-600 mb-4">Bold and creative design ideal for portfolios and creative professionals.</p>
+                        <button onclick="openTemplatePreview('astra')" class="w-full bg-primary-600 text-white py-2 rounded-lg hover:bg-primary-700 transition-colors">Preview</button>
+                    </div>
+                </div>
+                
+                <!-- Orion Template -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://minio.dev.hitanshushah.com/templates/orion.png')"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Orion</h3>
+                        <p class="text-gray-600 mb-4">Elegant and sophisticated template for corporate websites.</p>
+                        <button onclick="openTemplatePreview('orion')" class="w-full bg-primary-600 text-white py-2 rounded-lg hover:bg-primary-700 transition-colors">Preview</button>
+                    </div>
+                </div>
+                
+                <!-- Zenith Template -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://minio.dev.hitanshushah.com/templates/zenith.png')"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Zenith</h3>
+                        <p class="text-gray-600 mb-4">Minimalist and focused design for personal brands and freelancers.</p>
+                        <button onclick="openTemplatePreview('zenith')" class="w-full bg-primary-600 text-white py-2 rounded-lg hover:bg-primary-700 transition-colors">Preview</button>
+                    </div>
+                </div>
+                
+                <!-- Nebula Template -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow relative">
+                    <div class="absolute top-2 right-2 z-10">
+                        <span class="bg-gradient-to-r from-yellow-400 to-yellow-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                            <i class="fas fa-crown mr-1"></i>PREMIUM
+                        </span>
+                    </div>
+                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://minio.dev.hitanshushah.com/templates/nebula.png')"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Nebula</h3>
+                        <p class="text-gray-600 mb-4">Dynamic and interactive design perfect for tech companies.</p>
+                        <button onclick="openPremiumVideo('nebula')" class="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-white py-2 rounded-lg hover:from-yellow-500 hover:to-yellow-700 transition-colors font-semibold">
+                            <i class="fas fa-play mr-2"></i>See Design
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Titan Template -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow relative">
+                    <div class="absolute top-2 right-2 z-10">
+                        <span class="bg-gradient-to-r from-yellow-400 to-yellow-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                            <i class="fas fa-crown mr-1"></i>PREMIUM
+                        </span>
+                    </div>
+                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://minio.dev.hitanshushah.com/templates/titan.png')"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Titan</h3>
+                        <p class="text-gray-600 mb-4">Powerful and robust design for enterprise and large organizations.</p>
+                        <button onclick="openPremiumVideo('titan')" class="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-white py-2 rounded-lg hover:from-yellow-500 hover:to-yellow-700 transition-colors font-semibold">
+                            <i class="fas fa-play mr-2"></i>See Design
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Color Schemes Section -->
+    <section id="color-schemes" class="py-20 bg-gradient-to-br from-primary-50 to-blue-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Professional Color Schemes</h2>
+                <p class="text-xl text-gray-600">Choose from our curated color palettes</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Ocean Blue -->
+                <div class="bg-white rounded-xl p-6 hover:shadow-xl transition-shadow border border-gray-200">
+                    <div class="mb-4">
+                        <h3 class="text-xl font-semibold text-gray-900">Ocean Blue</h3>
+                    </div>
+                    <div class="flex space-x-2 mb-4">
+                        <div class="w-8 h-8 rounded-full" style="background: #2563eb;"></div>
+                        <div class="w-8 h-8 rounded-full" style="background: #1e40af;"></div>
+                        <div class="w-8 h-8 rounded-full bg-white border border-gray-300"></div>
+                        <div class="w-8 h-8 rounded-full" style="background: #000000;"></div>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">Primary</span>
+                            <div class="w-4 h-4 rounded" style="background: #2563eb;"></div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">Secondary</span>
+                            <div class="w-4 h-4 rounded" style="background: #1e40af;"></div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">Background</span>
+                            <div class="w-4 h-4 rounded bg-white border border-gray-300"></div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">Font</span>
+                            <div class="w-4 h-4 rounded" style="background: #000000;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Forest Green -->
+                <div class="bg-white rounded-xl p-6 hover:shadow-xl transition-shadow border border-gray-200">
+                    <div class="mb-4">
+                        <h3 class="text-xl font-semibold text-gray-900">Forest Green</h3>
+                    </div>
+                    <div class="flex space-x-2 mb-4">
+                        <div class="w-8 h-8 rounded-full" style="background: #059669;"></div>
+                        <div class="w-8 h-8 rounded-full" style="background: #047857;"></div>
+                        <div class="w-8 h-8 rounded-full bg-white border border-gray-300"></div>
+                        <div class="w-8 h-8 rounded-full" style="background: #000000;"></div>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">Primary</span>
+                            <div class="w-4 h-4 rounded" style="background: #059669;"></div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">Secondary</span>
+                            <div class="w-4 h-4 rounded" style="background: #047857;"></div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">Background</span>
+                            <div class="w-4 h-4 rounded bg-white border border-gray-300"></div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">Font</span>
+                            <div class="w-4 h-4 rounded" style="background: #000000;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sunset Orange -->
+                <div class="bg-white rounded-xl p-6 hover:shadow-xl transition-shadow border border-gray-200">
+                    <div class="mb-4">
+                        <h3 class="text-xl font-semibold text-gray-900">Sunset Orange</h3>
+                    </div>
+                    <div class="flex space-x-2 mb-4">
+                        <div class="w-8 h-8 rounded-full" style="background: #ea580c;"></div>
+                        <div class="w-8 h-8 rounded-full" style="background: #c2410c;"></div>
+                        <div class="w-8 h-8 rounded-full bg-white border border-gray-300"></div>
+                        <div class="w-8 h-8 rounded-full" style="background: #000000;"></div>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">Primary</span>
+                            <div class="w-4 h-4 rounded" style="background: #ea580c;"></div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">Secondary</span>
+                            <div class="w-4 h-4 rounded" style="background: #c2410c;"></div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">Background</span>
+                            <div class="w-4 h-4 rounded bg-white border border-gray-300"></div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">Font</span>
+                            <div class="w-4 h-4 rounded" style="background: #000000;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rose Pink -->
+                <div class="bg-white rounded-xl p-6 hover:shadow-xl transition-shadow border border-gray-200">
+                    <div class="mb-4">
+                        <h3 class="text-xl font-semibold text-gray-900">Rose Pink</h3>
+                    </div>
+                    <div class="flex space-x-2 mb-4">
+                        <div class="w-8 h-8 rounded-full" style="background: #e11d48;"></div>
+                        <div class="w-8 h-8 rounded-full" style="background: #be185d;"></div>
+                        <div class="w-8 h-8 rounded-full bg-white border border-gray-300"></div>
+                        <div class="w-8 h-8 rounded-full" style="background: #000000;"></div>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">Primary</span>
+                            <div class="w-4 h-4 rounded" style="background: #e11d48;"></div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">Secondary</span>
+                            <div class="w-4 h-4 rounded" style="background: #be185d;"></div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">Background</span>
+                            <div class="w-4 h-4 rounded bg-white border border-gray-300"></div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">Font</span>
+                            <div class="w-4 h-4 rounded" style="background: #000000;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pro Color Customization Banner -->
+            <div class="mt-12 bg-gradient-to-r from-primary-600 to-blue-700 rounded-2xl p-8 text-center text-white">
+                <div class="max-w-3xl mx-auto">
+                    <div class="mb-4">
+                        <i class="fas fa-palette text-4xl mb-4"></i>
+                    </div>
+                    <h3 class="text-2xl md:text-3xl font-bold mb-4">Unlimited Color Customization</h3>
+                    <p class="text-lg mb-6 text-blue-100">
+                        With WebBuilder Pro, you can create unlimited custom color schemes, 
+                        fine-tune every color, and save your favorite combinations.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button class="bg-white text-primary-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                            <i class="fas fa-crown mr-2"></i>
+                            Upgrade to Pro
+                        </button>
+                        <button class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors">
+                            <i class="fas fa-play mr-2"></i>
+                            Watch Demo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Pricing Section -->
+    <section id="pricing" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    Simple, Transparent Pricing
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Choose the plan that's right for you. No hidden fees, no surprises.
+                </p>
+            </div>
+            
+            <!-- Pricing Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 max-w-4xl mx-auto">
+                <!-- Basic Plan -->
+                <div class="bg-white p-8 rounded-xl shadow-lg border-2 border-gray-200">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Basic</h3>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold text-gray-900">$0</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span class="text-gray-700">Data Management</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span class="text-gray-700">Visibility Controls</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span class="text-gray-700">Custom Subdomain (.webbuilder.com)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span class="text-gray-700">Contact Form in Website</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-times text-red-500 mr-3"></i>
+                            <span class="text-gray-400">Premium Templates</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-times text-red-500 mr-3"></i>
+                            <span class="text-gray-400">Customize Color Themes</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-times text-red-500 mr-3"></i>
+                            <span class="text-gray-400">Use Your Own Domain</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-times text-red-500 mr-3"></i>
+                            <span class="text-gray-400">Remove Website Powered by Text</span>
+                        </li>
+                    </ul>
+                    <button class="w-full border-2 border-primary-600 text-primary-600 py-3 rounded-lg font-semibold hover:bg-primary-600 hover:text-white transition-colors">Get Started</button>
+                </div>
+                
+                <!-- Pro Plan -->
+                <div class="bg-primary-600 p-8 rounded-xl shadow-lg text-white relative">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                        <span class="bg-yellow-400 text-yellow-900 px-4 py-1 rounded-full text-sm font-semibold">Most Popular</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Pro</h3>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold">$99</span>
+                        <span class="text-primary-200">/month</span>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-3"></i>
+                            <span>Premium Templates</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-3"></i>
+                            <span>Data Management</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-3"></i>
+                            <span>Visibility Controls</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-3"></i>
+                            <span>Custom Subdomain (.webbuilder.com)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-3"></i>
+                            <span>Contact Form in Website</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-3"></i>
+                            <span>Customize Color Themes</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-3"></i>
+                            <span>Use Your Own Domain</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-3"></i>
+                            <span>Remove Website Powered by Text</span>
+                        </li>
+                    </ul>
+                    <button class="w-full bg-white text-primary-600 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">Get Started</button>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-primary-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+                Ready to Build Your Website?
+            </h2>
+            <p class="text-xl text-primary-100 mb-8 max-w-3xl mx-auto">
+                Join thousands of satisfied customers and start building your professional website today. 
+                No coding required, no technical skills needed.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button class="bg-white text-primary-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
+                    Start Building Free
+                </button>
+                <button class="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors">
+                    Schedule Demo
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">WebBuilder</h3>
+                    <p class="text-gray-400 mb-6">
+                        The easiest way to create professional websites without any coding knowledge.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Product</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Features</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Templates</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Pricing</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">API</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">About</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Documentation</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Community</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Status</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">
+                    © 2024 WebBuilder. All rights reserved.
+                </p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg p-6 max-w-4xl w-full mx-4 relative">
+            <button onclick="closeVideoModal()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl font-bold">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="mt-4">
+                <video id="modalVideo" controls muted class="w-full h-auto rounded-lg" preload="metadata">
+                    <source id="modalVideoSource" src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Color scheme data
+        const colorSchemes = {
+            ocean: {
+                primary: '#3b82f6',
+                secondary: '#1e40af',
+                accent: '#8b5cf6'
+            },
+            sunset: {
+                primary: '#f59e0b',
+                secondary: '#dc2626',
+                accent: '#ec4899'
+            },
+            sky: {
+                primary: '#06b6d4',
+                secondary: '#0891b2',
+                accent: '#3b82f6'
+            }
+        };
+
+        function openPremiumVideo(templateName) {
+            // Show video modal
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('modalVideo');
+            const videoSource = document.getElementById('modalVideoSource');
+            
+            // Set video source based on template
+            const videoSources = {
+                'nebula': 'assets/videos/nebula.mov',
+                'titan': 'assets/videos/titan.mov'
+            };
+            
+            if (videoSources[templateName]) {
+                videoSource.src = videoSources[templateName];
+                video.load();
+                modal.classList.remove('hidden');
+                // Autoplay the video
+                video.play().catch(e => {
+                    console.log('Autoplay prevented:', e);
+                });
+            }
+        }
+        
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('modalVideo');
+            modal.classList.add('hidden');
+            video.pause();
+            video.currentTime = 0;
+        }
+        
+        // Close modal when clicking outside the video
+        document.getElementById('videoModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeVideoModal();
+            }
+        });
+
+        function openTemplatePreview(templateName) {
+            // Open template preview in new tab
+            const templateUrls = {
+                'nova': 'nova.html',
+                'astra': 'astra.html',
+                'orion': 'orion.html',
+                'zenith': 'zenith.html'
+            };
+            
+            const url = templateUrls[templateName];
+            if (url) {
+                window.open(url, '_blank');
+            }
+        }
+
+        function applyColorScheme(schemeName) {
+            const scheme = colorSchemes[schemeName];
+            if (scheme) {
+                // Apply color scheme to the page
+                document.documentElement.style.setProperty('--primary-color', scheme.primary);
+                document.documentElement.style.setProperty('--secondary-color', scheme.secondary);
+                document.documentElement.style.setProperty('--accent-color', scheme.accent);
+                
+                // Show success message
+                alert(`Applied ${schemeName} color scheme!`);
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('bg-white/95', 'backdrop-blur-sm');
+            } else {
+                nav.classList.remove('bg-white/95', 'backdrop-blur-sm');
+            }
+        });
+    </script>
+</body>
+</html>

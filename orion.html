@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hitanshu Shah - Software Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary-color: #374151;
+            --secondary-color: #1f2937;
+            --background-color: #FFFFFF;
+            --color-fourth: #000000;
+        }
+        
+        .fullscreen-portfolio {
+            min-height: 100vh;
+            position: relative;
+            isolation: isolate;
+        }
+
+        .section {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            min-height: 100vh;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .section.active {
+            opacity: 1;
+            pointer-events: auto;
+            z-index: 2;
+        }
+
+        .section-content {
+            max-height: 100vh;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+        }
+
+        .section-content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .section-content::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .section-content::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+        }
+
+        .section-content::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .fullscreen-portfolio > .fixed {
+            position: fixed;
+            z-index: 100;
+        }
+
+        .nav-item {
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 50;
+            max-width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .nav-item:hover {
+            transform: translateX(-4px);
+            opacity: 0.9;
+        }
+
+        .nav-item.active {
+            transform: translateX(-8px);
+        }
+
+        /* Mobile Navigation Styles */
+        .nav-mobile-item {
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .nav-mobile-item:hover {
+            transform: translateX(4px);
+            opacity: 0.9;
+        }
+
+        .nav-mobile-item.active {
+            transform: translateX(8px);
+        }
+
+        /* Ensure mobile menu covers full screen */
+        @media (max-width: 1023px) {
+            /* Mobile menu overlay - full screen */
+            .lg\:hidden.fixed[class*="inset"] {
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                bottom: 0 !important;
+                width: 100vw !important;
+                height: 100vh !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            
+            /* Hamburger button - top right */
+            .lg\:hidden.fixed:not([class*="inset"]) {
+                top: 1rem !important;
+                right: 1rem !important;
+                left: auto !important;
+                bottom: auto !important;
+                width: auto !important;
+                height: auto !important;
+            }
+        }
+
+        /* Adjust navigation for smaller screens */
+        @media (max-width: 1024px) {
+            .nav-item {
+                max-width: 120px;
+            }
+            
+            .nav-item span {
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .fullscreen-portfolio > .fixed {
+                right: 1rem !important;
+            }
+            
+            .nav-item span {
+                display: none;
+            }
+            
+            .nav-item {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                background-color: currentColor;
+                opacity: 0.4;
+                max-width: none;
+            }
+            
+            .nav-item.active {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+            
+            .nav-item:hover {
+                transform: scale(1.2);
+            }
+            
+            /* Adjust hamburger menu position to not overlap with nav dots */
+            .lg\:hidden.fixed {
+                top: 1rem;
+                right: 1rem;
+            }
+        }
+
+        .overflow-wrap-anywhere {
+            overflow-wrap: anywhere;
+        }
+
+        .max-w-full {
+            max-width: 100%;
+        }
+
+        @media (min-width: 1px) {
+            .fullscreen-portfolio {
+                contain: layout;
+            }
+            
+            .fullscreen-portfolio > .fixed {
+                position: absolute !important;
+            }
+        }
+
+        @media (min-width: 1px) {
+            body:has(.fullscreen-portfolio:only-child) .fullscreen-portfolio > .fixed,
+            html:has(.fullscreen-portfolio:only-child) .fullscreen-portfolio > .fixed {
+                position: fixed !important;
+            }
+        }
+    </style>
+</head>
+<body class="fullscreen-portfolio bg-gray-900">
+    <!-- Desktop Navigation -->
+    <div class="fixed right-8 ml-8 top-1/2 transform -translate-y-1/2 z-50 flex flex-col gap-4">
+        <div class="nav-item cursor-pointer transition-all duration-300 active" style="color: var(--background-color);" onclick="changeSection(0)">
+            <span class="text-sm font-semibold whitespace-nowrap">About</span>
+        </div>
+        <div class="nav-item cursor-pointer transition-all duration-300" style="color: var(--background-color)40;" onclick="changeSection(1)">
+            <span class="text-sm font-semibold whitespace-nowrap">Experience</span>
+        </div>
+        <div class="nav-item cursor-pointer transition-all duration-300" style="color: var(--background-color)40;" onclick="changeSection(2)">
+            <span class="text-sm font-semibold whitespace-nowrap">Skills</span>
+        </div>
+        <div class="nav-item cursor-pointer transition-all duration-300" style="color: var(--background-color)40;" onclick="changeSection(3)">
+            <span class="text-sm font-semibold whitespace-nowrap">Projects</span>
+        </div>
+        <div class="nav-item cursor-pointer transition-all duration-300" style="color: var(--background-color)40;" onclick="changeSection(4)">
+            <span class="text-sm font-semibold whitespace-nowrap">Education</span>
+        </div>
+        <div class="nav-item cursor-pointer transition-all duration-300" style="color: var(--background-color)40;" onclick="changeSection(5)">
+            <span class="text-sm font-semibold whitespace-nowrap">Certifications</span>
+        </div>
+                <div class="nav-item cursor-pointer transition-all duration-300" style="color: var(--background-color)40;" onclick="changeSection(7)">
+                    <span class="text-sm font-semibold whitespace-nowrap">Achievements</span>
+                </div>
+                <div class="nav-item cursor-pointer transition-all duration-300" style="color: var(--background-color)40;" onclick="changeSection(6)">
+                    <span class="text-sm font-semibold whitespace-nowrap">Publications</span>
+                </div>
+        <div class="nav-item cursor-pointer transition-all duration-300" style="color: var(--background-color)40;" onclick="changeSection(8)">
+            <span class="text-sm font-semibold whitespace-nowrap">Contact</span>
+        </div>
+    </div>
+
+    <!-- Mobile Hamburger Menu -->
+    <div class="lg:hidden fixed top-4 right-4 z-50">
+        <!-- Hamburger Button -->
+        <button onclick="toggleMobileMenu()" class="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-lg" style="background-color: var(--background-color)20; color: var(--background-color); border-color: var(--background-color)40;">
+            <i id="mobileMenuIcon" class="fas fa-bars text-xl transition-transform duration-300"></i>
+        </button>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobileMenu" class="lg:hidden fixed inset-0 z-40 w-screen h-screen hidden" style="background-color: rgba(0, 0, 0, 0.95);" onclick="closeMobileMenu()">
+        <!-- Mobile Menu Content -->
+        <div class="absolute inset-0 w-full h-full backdrop-blur-lg" style="background-color: var(--background-color)95;" onclick="event.stopPropagation()">
+            <!-- Menu Header -->
+            <div class="flex items-center justify-between p-6 border-b" style="border-color: var(--background-color)40;">
+                <h3 class="text-2xl font-bold" style="color: var(--background-color);">Navigation</h3>
+                <button onclick="closeMobileMenu()" class="w-10 h-10 rounded-full flex items-center justify-center transition hover:opacity-80" style="background-color: var(--background-color)20;">
+                    <i class="fas fa-times text-xl" style="color: var(--background-color);"></i>
+                </button>
+            </div>
+
+            <!-- Menu Items -->
+            <div class="p-8 space-y-6 flex-1 overflow-y-auto">
+                <div class="nav-mobile-item cursor-pointer transition-all duration-300 p-2 rounded-xl active" style="background-color: var(--primary-color)20; color: var(--primary-color); border-color: var(--primary-color);" onclick="changeSection(0)">
+                    <div class="flex items-center gap-4">
+                        <div class="w-3 h-3 rounded-full transition-all duration-300" style="background-color: var(--primary-color);"></div>
+                        <span class="text-xl font-semibold">About</span>
+                        <i class="fas fa-check ml-auto text-xl" style="color: var(--primary-color);"></i>
+                    </div>
+                </div>
+                <div class="nav-mobile-item cursor-pointer transition-all duration-300 p-2 rounded-xl" style="background-color: var(--background-color)10; color: var(--background-color); border-color: var(--background-color)30;" onclick="changeSection(1)">
+                    <div class="flex items-center gap-4">
+                        <div class="w-3 h-3 rounded-full transition-all duration-300" style="background-color: var(--background-color)60;"></div>
+                        <span class="text-xl font-semibold">Experience</span>
+                    </div>
+                </div>
+                <div class="nav-mobile-item cursor-pointer transition-all duration-300 p-2 rounded-xl" style="background-color: var(--background-color)10; color: var(--background-color); border-color: var(--background-color)30;" onclick="changeSection(2)">
+                    <div class="flex items-center gap-4">
+                        <div class="w-3 h-3 rounded-full transition-all duration-300" style="background-color: var(--background-color)60;"></div>
+                        <span class="text-xl font-semibold">Skills</span>
+                    </div>
+                </div>
+                <div class="nav-mobile-item cursor-pointer transition-all duration-300 p-2 rounded-xl" style="background-color: var(--background-color)10; color: var(--background-color); border-color: var(--background-color)30;" onclick="changeSection(3)">
+                    <div class="flex items-center gap-4">
+                        <div class="w-3 h-3 rounded-full transition-all duration-300" style="background-color: var(--background-color)60;"></div>
+                        <span class="text-xl font-semibold">Projects</span>
+                    </div>
+                </div>
+                <div class="nav-mobile-item cursor-pointer transition-all duration-300 p-2 rounded-xl" style="background-color: var(--background-color)10; color: var(--background-color); border-color: var(--background-color)30;" onclick="changeSection(4)">
+                    <div class="flex items-center gap-4">
+                        <div class="w-3 h-3 rounded-full transition-all duration-300" style="background-color: var(--background-color)60;"></div>
+                        <span class="text-xl font-semibold">Education</span>
+                    </div>
+                </div>
+                <div class="nav-mobile-item cursor-pointer transition-all duration-300 p-2 rounded-xl" style="background-color: var(--background-color)10; color: var(--background-color); border-color: var(--background-color)30;" onclick="changeSection(5)">
+                    <div class="flex items-center gap-4">
+                        <div class="w-3 h-3 rounded-full transition-all duration-300" style="background-color: var(--background-color)60;"></div>
+                        <span class="text-xl font-semibold">Certifications</span>
+                    </div>
+                </div>
+                <div class="nav-mobile-item cursor-pointer transition-all duration-300 p-2 rounded-xl" style="background-color: var(--background-color)10; color: var(--background-color); border-color: var(--background-color)30;" onclick="changeSection(7)">
+                    <div class="flex items-center gap-4">
+                        <div class="w-3 h-3 rounded-full transition-all duration-300" style="background-color: var(--background-color)60;"></div>
+                        <span class="text-xl font-semibold">Achievements</span>
+                    </div>
+                </div>
+                <div class="nav-mobile-item cursor-pointer transition-all duration-300 p-2 rounded-xl" style="background-color: var(--background-color)10; color: var(--background-color); border-color: var(--background-color)30;" onclick="changeSection(6)">
+                    <div class="flex items-center gap-4">
+                        <div class="w-3 h-3 rounded-full transition-all duration-300" style="background-color: var(--background-color)60;"></div>
+                        <span class="text-xl font-semibold">Publications</span>
+                    </div>
+                </div>
+                <div class="nav-mobile-item cursor-pointer transition-all duration-300 p-2 rounded-xl" style="background-color: var(--background-color)10; color: var(--background-color); border-color: var(--background-color)30;" onclick="changeSection(8)">
+                    <div class="flex items-center gap-4">
+                        <div class="w-3 h-3 rounded-full transition-all duration-300" style="background-color: var(--background-color)60;"></div>
+                        <span class="text-xl font-semibold">Contact</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 1: Hero/About -->
+    <div class="section active" data-index="0">
+        <div class="h-full flex items-center justify-center px-4 md:px-8" style="background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);">
+            <div class="max-w-6xl w-full flex flex-col md:flex-row items-center gap-6 md:gap-12">
+                <div class="flex-1 min-w-0 order-2 md:order-1" style="color: var(--background-color);">
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight">
+                        Hitanshu Shah
+                    </h1>
+                    <p class="text-xl sm:text-2xl md:text-3xl mb-6" style="color: var(--background-color);">Software Developer</p>
+                    <p class="text-lg sm:text-xl mb-4 leading-relaxed break-words overflow-wrap-anywhere max-w-full" style="color: var(--background-color);">
+                        I'm a paragraph. Add your own text and edit me. I'm a great place for you add your bio.
+                    </p>
+                    <p class="text-lg sm:text-xl mb-6 md:mb-8 leading-relaxed break-words overflow-wrap-anywhere max-w-full" style="color: var(--background-color);">
+                        I'm a paragraph. Add your own introduction and edit me. I'm a great place for you to tell a story and let your users know a little more about you.
+                    </p>
+                    <div class="flex flex-col gap-2 text-sm md:text-base" style="color: var(--background-color)CC;">
+                        <span><i class="fas fa-map-marker-alt"></i> London, Ontario, Canada</span>
+                        <span><i class="fas fa-envelope"></i> <a href="mailto:hitanshushah10.8@gmail.com" target="_blank" class="hover:underline">hitanshushah10.8@gmail.com</a></span>
+                        <span><i class="fas fa-phone"></i> <a href="tel:9876543210" target="_blank" class="hover:underline">9876543210</a></span>
+                        <span><i class="fas fa-globe"></i> <a href="https://hitanshu" target="_blank" class="hover:underline">hitanshu</a></span>
+                        <span><i class="fas fa-globe"></i> <a href="https://hitanshu.projectsboard.live" target="_blank" class="hover:underline">hitanshu.projectsboard.live</a></span>
+                    </div>
+                </div>
+                <div class="flex-shrink-0 order-1 md:order-2">
+                    <div class="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full shadow-2xl border-4 md:border-8 overflow-hidden" style="border-color: var(--background-color)33;">
+                        <img src="assets/profile.png" alt="Profile Picture" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 2: Experience -->
+    <div class="section" data-index="1">
+        <div class="h-full flex items-center justify-center px-8" style="background: linear-gradient(135deg, var(--secondary-color)90 0%, var(--background-color)10 100%);">
+            <div class="section-content max-w-6xl w-full py-12 overflow-y-auto">
+                <h2 class="text-5xl font-bold mb-12 text-center" style="color: var(--background-color);">Experience</h2>
+                <div class="space-y-8">
+                    <div class="backdrop-blur-lg p-8 rounded-2xl border transition" style="background-color: var(--background-color)10; border-color: var(--background-color)33;">
+                        <div class="flex items-start gap-6">
+                            <div class="flex-1">
+                                <h3 class="text-3xl font-bold mb-2" style="color: var(--background-color);">Associate</h3>
+                                <p class="text-xl font-semibold mb-2" style="color: var(--background-color);">Company A</p>
+                                <p class="mb-4" style="color: var(--background-color);">
+                                    Canada | Oct 2025 - Present
+                                </p>
+                                <p class="mb-4 leading-relaxed break-words whitespace-pre-wrap overflow-wrap-anywhere max-w-full" style="color: var(--background-color);">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span style="background-color: var(--primary-color)20; color: var(--background-color);" class="px-4 py-2 rounded-full">
+                                        Excel
+                                    </span>
+                                    <span style="background-color: var(--primary-color)20; color: var(--background-color);" class="px-4 py-2 rounded-full">
+                                        Marketing
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="backdrop-blur-lg p-8 rounded-2xl border transition" style="background-color: var(--background-color)10; border-color: var(--background-color)33;">
+                        <div class="flex items-start gap-6">
+                            <div class="flex-1">
+                                <h3 class="text-3xl font-bold mb-2" style="color: var(--background-color);">Manager</h3>
+                                <p class="text-xl font-semibold mb-2" style="color: var(--background-color);">Comapny B</p>
+                                <p class="mb-4" style="color: var(--background-color);">
+                                    India | Jan 2024 - Dec 2024
+                                </p>
+                                <p class="mb-4 leading-relaxed break-words whitespace-pre-wrap overflow-wrap-anywhere max-w-full" style="color: var(--background-color);">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span style="background-color: var(--primary-color)20; color: var(--background-color);" class="px-4 py-2 rounded-full">
+                                        Docker
+                                    </span>
+                                    <span style="background-color: var(--primary-color)20; color: var(--background-color);" class="px-4 py-2 rounded-full">
+                                        Networking
+                                    </span>
+                                    <span style="background-color: var(--primary-color)20; color: var(--background-color);" class="px-4 py-2 rounded-full">
+                                        UI/UX
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="backdrop-blur-lg p-8 rounded-2xl border transition" style="background-color: var(--background-color)10; border-color: var(--background-color)33;">
+                        <div class="flex items-start gap-6">
+                            <div class="flex-1">
+                                <h3 class="text-3xl font-bold mb-2" style="color: var(--background-color);">Developer</h3>
+                                <p class="text-xl font-semibold mb-2" style="color: var(--background-color);">Company C</p>
+                                <p class="mb-4" style="color: var(--background-color);">
+                                    Canada | Jan 2023 - Dec 2023
+                                </p>
+                                <p class="mb-4 leading-relaxed break-words whitespace-pre-wrap overflow-wrap-anywhere max-w-full" style="color: var(--background-color);">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span style="background-color: var(--primary-color)20; color: var(--background-color);" class="px-4 py-2 rounded-full">
+                                        Python
+                                    </span>
+                                    <span style="background-color: var(--primary-color)20; color: var(--background-color);" class="px-4 py-2 rounded-full">
+                                        Java
+                                    </span>
+                                    <span style="background-color: var(--primary-color)20; color: var(--background-color);" class="px-4 py-2 rounded-full">
+                                        Docker
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 3: Skills -->
+    <div class="section" data-index="2">
+        <div class="h-full flex items-center justify-center px-8" style="background: linear-gradient(135deg, var(--color-fourth)80 0%, var(--secondary-color)80 100%);">
+            <div class="section-content max-w-6xl w-full py-12 overflow-y-auto">
+                <h2 class="text-5xl font-bold mb-12 text-center" style="color: var(--background-color);">Skills</h2>
+                <div class="space-y-10">
+                    <div>
+                        <h3 class="text-3xl font-semibold mb-6 mt-8" style="color: var(--background-color);">Soft Skills (Interpersonal Skills)</h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="backdrop-blur-lg p-6 rounded-xl border" style="background-color: var(--background-color)10; border-color: var(--background-color)33;">
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-xl font-semibold" style="color: var(--background-color);">Communication</span>
+                                    <span style="color: var(--background-color);">Intermediate</span>
+                                </div>
+                                <div class="w-full rounded-full h-3" style="background-color: var(--background-color)50;">
+                                    <div class="h-3 rounded-full transition-all duration-500" style="width: 60%; background: var(--primary-color);"></div>
+                                </div>
+                            </div>
+                            <div class="backdrop-blur-lg p-6 rounded-xl border" style="background-color: var(--background-color)10; border-color: var(--background-color)33;">
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-xl font-semibold" style="color: var(--background-color);">Problem-Solving</span>
+                                    <span style="color: var(--background-color);">Advanced</span>
+                                </div>
+                                <div class="w-full rounded-full h-3" style="background-color: var(--background-color)50;">
+                                    <div class="h-3 rounded-full transition-all duration-500" style="width: 80%; background: var(--primary-color);"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-3xl font-semibold mb-6 mt-8" style="color: var(--background-color);">Analytical & Research</h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="backdrop-blur-lg p-6 rounded-xl border" style="background-color: var(--background-color)10; border-color: var(--background-color)33;">
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-xl font-semibold" style="color: var(--background-color);">Data Visualization</span>
+                                    <span style="color: var(--background-color);">Beginner</span>
+                                </div>
+                                <div class="w-full rounded-full h-3" style="background-color: var(--background-color)50;">
+                                    <div class="h-3 rounded-full transition-all duration-500" style="width: 20%; background: var(--primary-color);"></div>
+                                </div>
+                            </div>
+                            <div class="backdrop-blur-lg p-6 rounded-xl border" style="background-color: var(--background-color)10; border-color: var(--background-color)33;">
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-xl font-semibold" style="color: var(--background-color);">Market Research</span>
+                                    <span style="color: var(--background-color);">Expert</span>
+                                </div>
+                                <div class="w-full rounded-full h-3" style="background-color: var(--background-color)50;">
+                                    <div class="h-3 rounded-full transition-all duration-500" style="width: 100%; background: var(--primary-color);"></div>
+                                </div>
+                            </div>
+                            <div class="backdrop-blur-lg p-6 rounded-xl border" style="background-color: var(--background-color)10; border-color: var(--background-color)33;">
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-xl font-semibold" style="color: var(--background-color);">Forecasting & Reporting</span>
+                                    <span style="color: var(--background-color);">Intermediate</span>
+                                </div>
+                                <div class="w-full rounded-full h-3" style="background-color: var(--background-color)50;">
+                                    <div class="h-3 rounded-full transition-all duration-500" style="width: 60%; background: var(--primary-color);"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 4: Projects -->
+    <div class="section" data-index="3">
+        <div class="h-full flex items-center justify-center px-8" style="background: linear-gradient(135deg, var(--primary-color)80 0%, var(--color-fourth)80 100%);">
+            <div class="section-content max-w-6xl w-full py-12 overflow-y-auto">
+                <h2 class="text-5xl font-bold mb-12 text-center" style="color: var(--background-color);">Projects</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="backdrop-blur-lg p-8 rounded-2xl border transition" style="background-color: var(--background-color)10; border-color: var(--background-color)33;">
+                        <h3 class="text-3xl font-bold mb-2" style="color: var(--background-color);">Project 1</h3>
+                        <p class="mb-4 text-lg" style="color: var(--background-color);">Website Development</p>
+                        <p class="mb-6" style="color: var(--background-color);">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        
+                        <!-- Technologies -->
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 rounded-full text-sm font-medium" style="background-color: var(--color-fourth); color: var(--background-color);">
+                                tech1
+                            </span>
+                            <span class="px-3 py-1 rounded-full text-sm font-medium" style="background-color: var(--color-fourth); color: var(--background-color);">
+                                tech2
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="backdrop-blur-lg p-8 rounded-2xl border transition" style="background-color: var(--background-color)10; border-color: var(--background-color)33;">
+                        <h3 class="text-3xl font-bold mb-2" style="color: var(--background-color);">Project 2</h3>
+                        <p class="mb-4 text-lg" style="color: var(--background-color);">Mobile App</p>
+                        <p class="mb-6" style="color: var(--background-color);">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        
+                        <!-- Technologies -->
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 rounded-full text-sm font-medium" style="background-color: var(--color-fourth); color: var(--background-color);">
+                                marketing
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 5: Education -->
+    <div class="section" data-index="4">
+        <div class="h-full flex items-center justify-center px-8" style="background: linear-gradient(135deg, var(--primary-color)80 0%, var(--color-fourth)80 100%);">
+            <div class="section-content max-w-6xl w-full py-12 overflow-y-auto">
+                <h2 class="text-5xl font-bold mb-12 text-center" style="color: var(--background-color);">Education</h2>
+                <div class="space-y-6">
+                    <div class="backdrop-blur-lg p-8 rounded-2xl border transition" style="background-color: var(--background-color)10; border-color: var(--background-color)33;">
+                        <h3 class="text-3xl font-bold mb-2" style="color: var(--background-color);">Masters of Computer Science, <span class="text-xl font-semibold" style="color: var(--background-color);">Western University</span></h3>
+                        <p class="mb-2" style="color: var(--background-color);">London, Canada, Sep 2025 - Oct 2025</p>
+                        <div style="background-color: var(--color-fourth); color: var(--background-color);" class="inline-block px-4 py-2 rounded-full font-semibold">
+                            CGPA: 9.00
+                        </div>
+                    </div>
+                    
+                    <div class="backdrop-blur-lg p-8 rounded-2xl border transition" style="background-color: var(--background-color)10; border-color: var(--background-color)33;">
+                        <h3 class="text-3xl font-bold mb-2" style="color: var(--background-color);">Bachelors in IT, <span class="text-xl font-semibold" style="color: var(--background-color);">Mumbai University</span></h3>
+                        <p class="mb-2" style="color: var(--background-color);">Mumbai, Jan 2024 - Sep 2025</p>
+                        <div style="background-color: var(--color-fourth); color: var(--background-color);" class="inline-block px-4 py-2 rounded-full font-semibold">
+                            CGPA: 8.90
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 6: Certifications -->
+    <div class="section" data-index="5">
+        <div class="h-full flex items-center justify-center px-8" style="background: linear-gradient(135deg, var(--secondary-color)80 0%, var(--primary-color) 100%);">
+            <div class="section-content max-w-6xl w-full py-12 overflow-y-auto">
+                <h2 class="text-5xl font-bold mb-12 text-center" style="color: var(--background-color);">Certifications</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="backdrop-blur-lg rounded-2xl overflow-hidden border transition" style="background-color: var(--background-color)10; border-color: var(--background-color)33;">
+                        <div class="p-8">
+                            <div class="flex items-start gap-6 mb-4">
+                                <div class="flex-1">
+                                    <h3 class="text-3xl font-bold mb-2" style="color: var(--background-color);">AWS Cloud Engineer</h3>
+                                    <p class="text-xl font-semibold mb-2" style="color: var(--background-color);">Amazon Web Services</p>
+                                    <p class="mb-4 leading-relaxed" style="color: var(--background-color);">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    <div class="text-sm mb-4" style="color: var(--background-color);">
+                                        Sep 16, 2025
+                                    </div>
+                                    <div class="flex gap-4">
+                                        <a href="http://localhost:4810/projectsdashboard/user/documents/1758597722720_Hitanshu_Resume.pdf" target="_blank" style="color: var(--background-color);" class="hover:opacity-80 font-semibold transition border backdrop-blur-lg px-4 py-2 rounded-full mt-4">
+                                            View Certificate →
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="backdrop-blur-lg rounded-2xl overflow-hidden border transition" style="background-color: var(--background-color)10; border-color: var(--background-color)33;">
+                        <div class="p-8">
+                            <div class="flex items-start gap-6 mb-4">
+                                <div class="flex-1">
+                                    <h3 class="text-3xl font-bold mb-2" style="color: var(--background-color);">Marketing</h3>
+                                    <p class="text-xl font-semibold mb-2" style="color: var(--background-color);">Google</p>
+                                    <p class="mb-4 leading-relaxed" style="color: var(--background-color);">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                                    <div class="text-sm mb-4" style="color: var(--background-color);">
+                                        Sep 6, 2025
+                                    </div>
+                                    <div class="flex gap-4">
+                                        <a href="http://localhost:4810/projectsdashboard/akadmin/documents/1759288505237_Canonical Written Interview.pdf" target="_blank" style="color: var(--background-color);" class="hover:opacity-80 font-semibold transition border backdrop-blur-lg px-4 py-2 rounded-full mt-4">
+                                            View Certificate →
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 7: Achievements -->
+    <div class="section" data-index="6">
+        <div class="h-full flex items-center justify-center px-8" style="background: linear-gradient(135deg, var(--primary-color) 0%, var(--background-color)80 100%);">
+            <div class="section-content max-w-6xl w-full py-12 overflow-y-auto">
+                <h2 class="text-5xl font-bold mb-12 text-center" style="color: var(--background-color);">Achievements</h2>
+                <div class="max-w-4xl mx-auto">
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mt-1" style="background-color: var(--background-color);">
+                            </div>
+                            <p class="text-xl leading-relaxed font-bold" style="color: var(--background-color);">Recognized with "Employee of the Month" award for outstanding performance, commitment to project deadlines, and delivering high-quality solutions that exceeded client expectations.</p>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mt-1" style="background-color: var(--background-color);">
+                            </div>
+                            <p class="text-xl leading-relaxed font-bold" style="color: var(--background-color);">Received company appreciation certificate for contributing to the successful launch of a major product release, ensuring seamless integration and exceptional reliability under tight timelines.
+                                Publications
+                                </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 8: Publications -->
+    <div class="section" data-index="7">
+        <div class="h-full flex items-center justify-center px-8" style="background: linear-gradient(135deg, var(--color-fourth)80 0%, var(--secondary-color)80 100%);">
+            <div class="section-content max-w-6xl w-full py-12 overflow-y-auto">
+                <h2 class="text-5xl font-bold mb-12 text-center" style="color: var(--background-color);">Publications</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="backdrop-blur-lg rounded-2xl overflow-hidden border transition" style="background-color: var(--background-color)10; border-color: var(--background-color)33;">
+                        <div class="p-8">
+                            <div class="flex items-start gap-6 mb-4">
+                                <div class="flex-1">
+                                    <h3 class="text-3xl font-bold mb-2" style="color: var(--background-color);">Machine Learning Paper</h3>
+                                    <p class="text-xl font-semibold mb-2" style="color: var(--background-color);">IEEE Conference</p>
+                                    <p class="mb-4 leading-relaxed" style="color: var(--background-color);">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                                    <div class="text-sm mb-4" style="color: var(--background-color);">
+                                        Published: Sep 10, 2025
+                                    </div>
+                                    <div class="flex gap-4">
+                                        <a href="http://localhost:4810/projectsdashboard/akadmin/documents/1761181604785_Hitanshu_Resume.pdf" target="_blank" style="color: var(--background-color);" class="hover:opacity-80 font-semibold transition border backdrop-blur-lg px-4 py-2 rounded-full mt-4">
+                                            View PDF →
+                                        </a>
+                                        <a href="https://ieeexplore.ieee.org/document/9544973" target="_blank" style="color: var(--background-color);" class="hover:opacity-80 font-semibold transition border backdrop-blur-lg px-4 py-2 rounded-full mt-4">
+                                            View Paper →
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 9: Contact -->
+    <div class="section" data-index="8">
+        <div class="h-full flex items-center justify-center px-8" style="background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--color-fourth) 100%);">
+            <div class="section-content max-w-6xl w-full py-12 overflow-y-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-6xl font-bold mb-8" style="color: var(--background-color);">Get In Touch</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-16 items-start">
+                    <!-- Contact Form -->
+                    <div class="space-y-6">
+                        <h3 class="text-3xl font-bold mb-6" style="color: var(--background-color);">Send Message</h3>
+                        <form onsubmit="handleContactSubmit(event)" class="space-y-6">
+                            <div>
+                                <label class="block text-lg font-semibold mb-2" style="color: var(--background-color);">Name</label>
+                                <input type="text" name="name" required class="w-full px-4 py-3 rounded-lg border backdrop-blur-lg transition focus:outline-none focus:ring-2" style="background-color: var(--background-color)20; border-color: var(--background-color)40; color: var(--background-color);" placeholder="Your name">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-lg font-semibold mb-2" style="color: var(--background-color);">Email</label>
+                                <input type="email" name="email" required class="w-full px-4 py-3 rounded-lg border backdrop-blur-lg transition focus:outline-none focus:ring-2" style="background-color: var(--background-color)20; border-color: var(--background-color)40; color: var(--background-color);" placeholder="your.email@example.com">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-lg font-semibold mb-2" style="color: var(--background-color);">Message</label>
+                                <textarea name="message" required rows="5" class="w-full px-4 py-3 rounded-lg border backdrop-blur-lg transition focus:outline-none focus:ring-2 resize-none" style="background-color: var(--background-color)20; border-color: var(--background-color)40; color: var(--background-color);" placeholder="Tell me about your project or just say hello!"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full px-8 py-4 rounded-lg text-xl font-semibold transition hover:opacity-90 disabled:opacity-50" style="background-color: var(--background-color); color: var(--primary-color);">
+                                <i class="fas fa-paper-plane mr-3"></i>
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <!-- Contact Info -->
+                    <div class="space-y-8">
+                        <h3 class="text-3xl font-bold mb-6" style="color: var(--background-color);">Contact Info</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background-color: var(--background-color)20;">
+                                    <i class="fas fa-envelope text-xl" style="color: var(--background-color);"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold" style="color: var(--background-color);">Email</p>
+                                    <a href="mailto:hitanshushah10.8@gmail.com" class="hover:underline" style="color: var(--background-color);">
+                                        hitanshushah10.8@gmail.com
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background-color: var(--background-color)20;">
+                                    <i class="fas fa-phone text-xl" style="color: var(--background-color);"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold" style="color: var(--background-color);">Phone</p>
+                                    <a href="tel:9876543210" class="hover:underline" style="color: var(--background-color);">
+                                        9876543210
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background-color: var(--background-color)20;">
+                                    <i class="fas fa-map-marker-alt text-xl" style="color: var(--background-color);"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold" style="color: var(--background-color);">Location</p>
+                                    <p style="color: var(--background-color);">
+                                        London, Ontario, Canada
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background-color: var(--background-color)20;">
+                                    <i class="fas fa-globe text-xl" style="color: var(--background-color);"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold" style="color: var(--background-color);">Website</p>
+                                    <a href="https://hitanshu" target="_blank" class="hover:underline" style="color: var(--background-color);">hitanshu</a>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background-color: var(--background-color)20;">
+                                    <i class="fas fa-globe text-xl" style="color: var(--background-color);"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold" style="color: var(--background-color);">Projects Board</p>
+                                    <a href="https://hitanshu.projectsboard.live" target="_blank" class="hover:underline" style="color: var(--background-color);">hitanshu.projectsboard.live</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p style="color: var(--background-color);">Powered by <a href="#" target="_blank" class="hover:underline" style="color: var(--background-color);">WebBuilder</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSection = 0;
+        let isScrolling = false;
+        let isMobileMenuOpen = false;
+
+        // Navigation functions
+        function changeSection(newIndex) {
+            if (newIndex < 0 || newIndex >= 9 || isScrolling) return;
+            
+            isScrolling = true;
+            
+            // Remove active class from all sections
+            const allSections = document.querySelectorAll('.section');
+            allSections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all nav items (desktop)
+            const allNavItems = document.querySelectorAll('.nav-item');
+            allNavItems.forEach(item => {
+                item.classList.remove('active');
+                item.style.color = 'var(--background-color)40';
+            });
+            
+            // Remove active class from all mobile nav items
+            const allMobileNavItems = document.querySelectorAll('.nav-mobile-item');
+            allMobileNavItems.forEach(item => {
+                item.classList.remove('active');
+                item.style.backgroundColor = 'var(--background-color)10';
+                item.style.color = 'var(--background-color)';
+                item.style.borderColor = 'var(--background-color)30';
+                const dot = item.querySelector('.w-3');
+                if (dot) {
+                    dot.style.backgroundColor = 'var(--background-color)60';
+                }
+                const checkIcon = item.querySelector('.fa-check');
+                if (checkIcon) {
+                    checkIcon.style.display = 'none';
+                }
+            });
+            
+            // Update current section index
+            currentSection = newIndex;
+            
+            // Find and activate the section with matching data-index
+            const targetSection = document.querySelector(`.section[data-index="${newIndex}"]`);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+            
+            // Update desktop navigation
+            if (allNavItems[newIndex]) {
+                allNavItems[newIndex].classList.add('active');
+                allNavItems[newIndex].style.color = 'var(--background-color)';
+            }
+            
+            // Update mobile navigation
+            if (allMobileNavItems[newIndex]) {
+                allMobileNavItems[newIndex].classList.add('active');
+                allMobileNavItems[newIndex].style.backgroundColor = 'var(--primary-color)20';
+                allMobileNavItems[newIndex].style.color = 'var(--primary-color)';
+                allMobileNavItems[newIndex].style.borderColor = 'var(--primary-color)';
+                const dot = allMobileNavItems[newIndex].querySelector('.w-3');
+                if (dot) {
+                    dot.style.backgroundColor = 'var(--primary-color)';
+                }
+                const checkIcon = allMobileNavItems[newIndex].querySelector('.fa-check');
+                if (checkIcon) {
+                    checkIcon.style.display = 'block';
+                }
+            }
+            
+            // Close mobile menu when navigating
+            isMobileMenuOpen = false;
+            document.getElementById('mobileMenu').classList.add('hidden');
+            document.getElementById('mobileMenuIcon').classList.remove('fa-times');
+            document.getElementById('mobileMenuIcon').classList.add('fa-bars');
+            
+            setTimeout(() => {
+                isScrolling = false;
+            }, 900);
+        }
+
+        // Mobile menu functions
+        function toggleMobileMenu() {
+            isMobileMenuOpen = !isMobileMenuOpen;
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuIcon = document.getElementById('mobileMenuIcon');
+            
+            if (isMobileMenuOpen) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenuIcon.classList.remove('fa-bars');
+                mobileMenuIcon.classList.add('fa-times');
+            } else {
+                mobileMenu.classList.add('hidden');
+                mobileMenuIcon.classList.remove('fa-times');
+                mobileMenuIcon.classList.add('fa-bars');
+            }
+        }
+
+        function closeMobileMenu() {
+            isMobileMenuOpen = false;
+            document.getElementById('mobileMenu').classList.add('hidden');
+            document.getElementById('mobileMenuIcon').classList.remove('fa-times');
+            document.getElementById('mobileMenuIcon').classList.add('fa-bars');
+        }
+
+        // Contact form handler
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const message = formData.get('message');
+            
+            // Create mailto link with form data
+            const emailBody = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+            const mailtoLink = `mailto:hitanshushah10.8@gmail.com?subject=Contact Form&body=${encodeURIComponent(emailBody)}`;
+            
+            window.location.href = mailtoLink;
+            
+            // Reset form
+            event.target.reset();
+            
+            // Show success message
+            alert('Thank you for your message! I will get back to you soon.');
+        }
+
+        // Keyboard navigation
+        function handleKeydown(e) {
+            if (isScrolling) return;
+            
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+                e.preventDefault();
+                changeSection(currentSection + 1);
+            } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+                e.preventDefault();
+                changeSection(currentSection - 1);
+            }
+        }
+
+        // Wheel navigation
+        function handleWheel(e) {
+            if (isScrolling) return;
+            
+            e.preventDefault();
+            if (e.deltaY > 0) {
+                changeSection(currentSection + 1);
+            } else {
+                changeSection(currentSection - 1);
+            }
+        }
+
+        // Touch navigation
+        let touchStartY = 0;
+        let touchEndY = 0;
+
+        function handleTouchStart(e) {
+            touchStartY = e.changedTouches[0]?.screenY || 0;
+        }
+
+        function handleTouchEnd(e) {
+            touchEndY = e.changedTouches[0]?.screenY || 0;
+            handleSwipe();
+        }
+
+        function handleSwipe() {
+            if (isScrolling) return;
+            
+            if (touchStartY - touchEndY > 50) {
+                changeSection(currentSection + 1);
+            } else if (touchEndY - touchStartY > 50) {
+                changeSection(currentSection - 1);
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Ensure About section is active on initial load
+            currentSection = 0;
+            changeSection(0);
+            
+            // Add event listeners
+            window.addEventListener('wheel', handleWheel, { passive: false });
+            window.addEventListener('keydown', handleKeydown);
+            window.addEventListener('touchstart', handleTouchStart);
+            window.addEventListener('touchend', handleTouchEnd);
+        });
+    </script>
+</body>
+</html>

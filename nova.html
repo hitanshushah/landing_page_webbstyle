@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hitanshu Shah - Software Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --background-color: #FFFFFF;
+            --fourth-color: #000000;
+            --light-grey: #c2c2c2;
+        }
+        
+        .portfolio-template {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+        
+        /* Custom scrollbar */
+        .content::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .content::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        .content::-webkit-scrollbar-thumb {
+            background: transparent;
+            border-radius: 10px;
+        }
+        
+        .content:hover::-webkit-scrollbar-thumb {
+            background: var(--light-grey);
+        }
+        
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Mobile scrollbar */
+        @media screen and (max-width: 1024px) {
+            ::-webkit-scrollbar {
+                width: 8px;
+            }
+            
+            ::-webkit-scrollbar-track {
+                background: var(--background-color);
+            }
+            
+            ::-webkit-scrollbar-thumb {
+                background: #fff;
+                border-radius: 10px;
+            }
+        }
+        
+        @media screen and (max-width: 750px) {
+            ::-webkit-scrollbar {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="portfolio-template min-h-screen font-['Montserrat',sans-serif]" style="background-color: var(--background-color)">
+    <div class="flex flex-col items-center justify-center min-h-screen md:py-5">
+        <div class="flex flex-row items-center justify-center w-full">
+            <!-- Main Portfolio Window -->
+            <div class="flex flex-col lg:flex-row bg-[var(--secondary-color)] h-auto lg:h-[80vh] w-full md:w-[85vw] max-w-[1200px] rounded-none md:rounded-[30px] shadow-lg my-0 md:my-8 lg:my-0">
+                <!-- Header Section -->
+                <section class="justify-center flex flex-col items-center w-full lg:w-[500px] h-full rounded-none md:rounded-[30px] text-[var(--background-color)] overflow-auto">
+                    <div class="w-[150px] h-[150px] rounded-full mb-2.5 mx-2.5 shadow-[0_0_10px_2px_rgba(0,0,0,0.5)] overflow-hidden">
+                        <img src="assets/profile.png" alt="Profile Picture" class="w-full h-full object-cover">
+                    </div>
+                    <h1 class="text-4xl leading-[4rem] text-[var(--background-color)]">Hitanshu Shah</h1>
+                    <h2 class="text-base leading-8 font-normal text-[var(--background-color)]">Software Developer</h2>
+                    
+                    <!-- Contact Information -->
+                    <div class="flex flex-wrap justify-center gap-2 mt-2 text-[var(--background-color)] text-center text-sm">
+                        <!-- Email -->
+                        <div class="flex items-center justify-center gap-2">
+                            <i class="fas fa-envelope text-[var(--background-color)]"></i>
+                            <a href="mailto:hitanshushah10.8@gmail.com" class="text-[var(--background-color)] hover:text-[var(--fourth-color)] transition-colors duration-200 break-all">
+                                hitanshushah10.8@gmail.com
+                            </a>
+                        </div>
+                        
+                        <!-- Phone -->
+                        <div class="flex items-center justify-center gap-2">
+                            <i class="fas fa-phone text-[var(--background-color)]"></i>
+                            <a href="tel:9876543210" class="text-[var(--background-color)] hover:text-[var(--fourth-color)] transition-colors duration-200">
+                                9876543210
+                            </a>
+                        </div>
+                        <!-- Website -->
+                        <div class="flex items-center justify-center gap-2">
+                            <i class="fas fa-globe text-[var(--background-color)]"></i>
+                            <a href="https://hitanshu" target="_blank" class="text-[var(--background-color)] hover:text-[var(--fourth-color)] transition-colors duration-200 break-all">
+                                hitanshu
+                            </a>
+                        </div>
+                        <div class="flex items-center justify-center gap-2">
+                            <i class="fas fa-globe text-[var(--background-color)]"></i>
+                            <a href="https://hitanshu.projectsboard.live" target="_blank" class="text-[var(--background-color)] hover:text-[var(--fourth-color)] transition-colors duration-200 break-all">
+                                hitanshu.projectsboard.live
+                            </a>
+                        </div>
+                        <!-- Location -->
+                        <div class="flex items-center justify-center gap-2 mt-2">
+                            <i class="fas fa-location-dot text-[var(--background-color)]"></i>
+                            <span class="text-[var(--background-color)]">
+                                London, Ontario, Canada
+                            </span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Content Section -->
+                <div class="rounded-none md:rounded-[30px] bg-[var(--background-color)] w-full h-full overflow-auto scroll-smooth pb-0 lg:pb-0">
+                    <!-- Home -->
+                    <section class="flex flex-col items-center justify-center min-h-full mx-8 lg:mx-12 max-w-full break-words" id="welcome-section">
+                        <h1 class="text-3xl lg:text-[3.5rem] font-extrabold text-center my-5 leading-[2.5rem] lg:leading-[4rem] text-[var(--fourth-color)]">Hello, I am Hitanshu Shah</h1>
+                    </section>
+
+                    <!-- About Me -->
+                    <section class="flex flex-col items-center justify-center min-h-fit mx-8 lg:mx-12 max-w-full break-words pt-0 lg:pt-0" id="about">
+                        <h1 class="text-4xl leading-[4rem] text-[var(--secondary-color)] self-start">About me</h1>
+                        <div class="w-full max-w-full my-2">
+                            <p class="text-[var(--fourth-color)] break-words max-w-full leading-6 mb-3">I'm a paragraph. Add your own text and edit me. I'm a great place for you add your bio.</p>
+                            <p class="text-[var(--fourth-color)] break-words max-w-full leading-6 mb-3">
+                                I'm a paragraph. Add your own introduction and edit me. I'm a great place for you to tell a story and let your users know a little more about you.
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- Experience -->
+                    <section class="my-8 flex flex-col items-center justify-center min-h-fit mx-8 lg:mx-12 max-w-full break-words pt-0 lg:pt-0" id="experience">
+                        <h1 class="text-4xl leading-[4rem] text-[var(--secondary-color)] self-start">Experience</h1>
+                        <div class="relative w-full before:content-[''] before:absolute before:w-0.5 before:left-6 before:top-[55px] before:h-[calc(100%-100px)] before:bg-[var(--fourth-color)] before:z-[1]">
+                            <div class="ml-14">
+                                <div class="my-12 relative">
+                                    <!-- Company Logo or Initials -->
+                                    <div class="absolute -left-[3.5rem] top-0 w-12 h-12 rounded-full shadow-lg z-10 overflow-hidden border-2 border-[var(--fourth-color)] bg-[var(--background-color)]">
+                                        <img src="assets/companya.png" alt="Company A Logo" class="w-full h-full object-cover">
+                                    </div>
+                                    
+                                    <div class="flex items-center gap-2 justify-between">
+                                        <div class="font-bold text-[var(--fourth-color)]">
+                                            Associate - Company A
+                                        </div>
+                                        <div class="text-[var(--fourth-color)] text-sm whitespace-nowrap">Oct 2025 - Present</div>
+                                    </div>
+                                    <div class="text-[var(--fourth-color)] break-words">
+                                        <h3 class="text-[var(--fourth-color)] leading-6 text-sm">Canada</h3>
+                                        <p class="mt-3 whitespace-pre-line leading-6 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="my-12 relative">
+                                    <!-- Company Logo or Initials -->
+                                    <div class="absolute -left-[3.5rem] top-0 w-12 h-12 rounded-full shadow-lg z-10 overflow-hidden border-2 border-[var(--fourth-color)] bg-[var(--background-color)]">
+                                        <img src="assets/companyb.png" alt="Company B Logo" class="w-full h-full object-cover">
+                                    </div>
+                                    
+                                    <div class="flex items-center gap-2 justify-between">
+                                        <div class="font-bold text-[var(--fourth-color)]">
+                                            Manager - Comapny B
+                                        </div>
+                                        <div class="text-[var(--fourth-color)] text-sm whitespace-nowrap">Jan 2024 - Dec 2024</div>
+                                    </div>
+                                    <div class="text-[var(--fourth-color)] break-words">
+                                        <h3 class="text-[var(--fourth-color)] leading-6 text-sm">India</h3>
+                                        <p class="mt-3 whitespace-pre-line leading-6 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="my-12 relative">
+                                    <!-- Company Logo or Initials -->
+                                    <div class="absolute -left-[3.5rem] top-0 w-12 h-12 rounded-full shadow-lg z-10 overflow-hidden border-2 border-[var(--fourth-color)] bg-[var(--background-color)]">
+                                        <img src="assets/companyc.jpg" alt="Company C Logo" class="w-full h-full object-cover">
+                                    </div>
+                                    
+                                    <div class="flex items-center gap-2 justify-between">
+                                        <div class="font-bold text-[var(--fourth-color)]">
+                                            Developer - Company C
+                                        </div>
+                                        <div class="text-[var(--fourth-color)] text-sm whitespace-nowrap">Jan 2023 - Dec 2023</div>
+                                    </div>
+                                    <div class="text-[var(--fourth-color)] break-words">
+                                        <h3 class="text-[var(--fourth-color)] leading-6 text-sm">Canada</h3>
+                                        <p class="mt-3 whitespace-pre-line leading-6 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Projects -->
+                    <section class="my-8 flex flex-col items-center justify-center min-h-fit mx-8 lg:mx-12 max-w-full break-words pt-0 lg:pt-0" id="projects">
+                        <h1 class="text-4xl leading-[4rem] text-[var(--secondary-color)] self-start">Projects</h1>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 w-full max-w-full overflow-hidden my-5">
+                            <div class="flex flex-col bg-[var(--background-color)] shadow-lg border border-[var(--fourth-color)] rounded-lg overflow-hidden">
+                                <!-- Project Image with Hover Overlay -->
+                                <div class="relative w-full h-[250px] overflow-hidden cursor-pointer group">
+                                    <img src="assets/projects/project1.png" alt="Project 1" class="w-full h-full object-cover">
+                                </div>
+
+                                <!-- Project Details -->
+                                <div class="p-4">
+                                    <h3 class="text-[var(--fourth-color)] text-lg font-semibold mb-1">Project 1</h3>
+                                    <p class="text-xs font-semibold mb-2 uppercase text-[var(--fourth-color)] opacity-70">Website Development</p>
+                                    <p class="text-[var(--fourth-color)] text-sm leading-relaxed mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    
+                                    <!-- Technologies -->
+                                    <div class="flex flex-wrap gap-1.5 mb-3">
+                                        <span class="text-xs py-1 px-2 bg-[var(--fourth-color)]/10 text-[var(--fourth-color)] rounded-[10px]">
+                                            tech1
+                                        </span>
+                                        <span class="text-xs py-1 px-2 bg-[var(--fourth-color)]/10 text-[var(--fourth-color)] rounded-[10px]">
+                                            tech2
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col bg-[var(--background-color)] shadow-lg border border-[var(--fourth-color)] rounded-lg overflow-hidden">
+                                <!-- Project Image with Hover Overlay -->
+                                <div class="relative w-full h-[250px] overflow-hidden cursor-pointer group">
+                                    <img src="assets/projects/project2.png" alt="Project 2" class="w-full h-full object-cover">
+                                </div>
+
+                                <!-- Project Details -->
+                                <div class="p-4">
+                                    <h3 class="text-[var(--fourth-color)] text-lg font-semibold mb-1">Project 2</h3>
+                                    <p class="text-xs font-semibold mb-2 uppercase text-[var(--fourth-color)] opacity-70">Mobile App</p>
+                                    <p class="text-[var(--fourth-color)] text-sm leading-relaxed mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    
+                                    <!-- Technologies -->
+                                    <div class="flex flex-wrap gap-1.5 mb-3">
+                                        <span class="text-xs py-1 px-2 bg-[var(--fourth-color)]/10 text-[var(--fourth-color)] rounded-[10px]">
+                                            marketing
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Education -->
+                    <section class="my-8 flex flex-col items-center justify-center min-h-fit mx-8 lg:mx-12 max-w-full break-words pt-0 lg:pt-0" id="education">
+                        <h1 class="text-4xl leading-[4rem] text-[var(--secondary-color)] self-start">Education</h1>
+                        
+                        <!-- Mobile: All items on right side -->
+                        <div class="block md:hidden relative w-full mt-10">
+                            <div class="relative ml-8">
+                                <!-- Vertical Line -->
+                                <div class="absolute -left-6 top-0 bottom-0 w-0.5 bg-[var(--fourth-color)] z-[1]"></div>
+                                
+                                <div class="space-y-8">
+                                    <div class="relative">
+                                        <!-- Timeline Circle -->
+                                        <div class="absolute left-[-2rem] top-0 w-4 h-4 rounded-full bg-[var(--fourth-color)] z-10"></div>
+                                        
+                                        <!-- Education Card -->
+                                        <div class="bg-[var(--background-color)] border border-gray-200 rounded-lg px-4 py-3 shadow-md ml-4">
+                                            <h2 class="text-sm text-[var(--fourth-color)]">Sep 2025 - Oct 2025</h2>
+                                            <div class="flex flex-wrap gap-1">
+                                                <h3 class="text-xl font-bold text-[var(--fourth-color)]">Masters of Computer Science,</h3>
+                                                <p class="text-lg text-[var(--fourth-color)] mb-2">Western University</p>
+                                            </div>
+                                            <div class="flex items-center gap-1 text-gray-600 text-sm mb-2">
+                                                <span class="text-[var(--fourth-color)]">London, Canada</span>
+                                            </div>
+                                            <p class="text-[var(--fourth-color)] text-sm">CGPA: 9.00</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="relative">
+                                        <!-- Timeline Circle -->
+                                        <div class="absolute left-[-2rem] top-0 w-4 h-4 rounded-full bg-[var(--fourth-color)] z-10"></div>
+                                        
+                                        <!-- Education Card -->
+                                        <div class="bg-[var(--background-color)] border border-gray-200 rounded-lg px-4 py-3 shadow-md ml-4">
+                                            <h2 class="text-sm text-[var(--fourth-color)]">Jan 2024 - Sep 2025</h2>
+                                            <div class="flex flex-wrap gap-1">
+                                                <h3 class="text-xl font-bold text-[var(--fourth-color)]">Bachelors in IT,</h3>
+                                                <p class="text-lg text-[var(--fourth-color)] mb-2">Mumbai University</p>
+                                            </div>
+                                            <div class="flex items-center gap-1 text-gray-600 text-sm mb-2">
+                                                <span class="text-[var(--fourth-color)]">Mumbai</span>
+                                            </div>
+                                            <p class="text-[var(--fourth-color)] text-sm">CGPA: 8.90</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tablet/Desktop: Alternating layout -->
+                        <div class="hidden md:block relative w-full max-w-4xl mx-auto mt-10">
+                            <!-- Center Timeline Line -->
+                            <div class="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-[var(--fourth-color)] z-[1]"></div>
+                            
+                            <div class="space-y-8">
+                                <div class="relative flex items-center justify-start">
+                                    <!-- Timeline Circle -->
+                                    <div class="absolute left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full bg-[var(--fourth-color)] z-10"></div>
+                                    
+                                    <!-- Education Card -->
+                                    <div class="bg-[var(--background-color)] border border-gray-200 rounded-lg px-4 py-3 shadow-md w-5/12">
+                                        <h2 class="text-sm text-[var(--fourth-color)]">Sep 2025 - Oct 2025</h2>
+                                        <div class="flex flex-wrap gap-1">
+                                            <h3 class="text-xl font-bold text-[var(--fourth-color)]">Masters of Computer Science,</h3>
+                                            <p class="text-lg text-[var(--fourth-color)] mb-2">Western University</p>
+                                        </div>
+                                        <div class="flex items-center gap-1 text-gray-600 text-sm mb-2">
+                                            <span class="text-[var(--fourth-color)]">London, Canada</span>
+                                        </div>
+                                        <p class="text-[var(--fourth-color)] text-sm">CGPA: 9.00</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="relative flex items-center justify-end">
+                                    <!-- Timeline Circle -->
+                                    <div class="absolute left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full bg-[var(--fourth-color)] z-10"></div>
+                                    
+                                    <!-- Education Card -->
+                                    <div class="bg-[var(--background-color)] border border-gray-200 rounded-lg px-4 py-3 shadow-md w-5/12">
+                                        <h2 class="text-sm text-[var(--fourth-color)]">Jan 2024 - Sep 2025</h2>
+                                        <div class="flex flex-wrap gap-1">
+                                            <h3 class="text-xl font-bold text-[var(--fourth-color)]">Bachelors in IT,</h3>
+                                            <p class="text-lg text-[var(--fourth-color)] mb-2">Mumbai University</p>
+                                        </div>
+                                        <div class="flex items-center gap-1 text-gray-600 text-sm mb-2">
+                                            <span class="text-[var(--fourth-color)]">Mumbai</span>
+                                        </div>
+                                        <p class="text-[var(--fourth-color)] text-sm">CGPA: 8.90</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Skills -->
+                    <section class="my-8 flex flex-col items-center justify-center min-h-fit mx-8 lg:mx-12 max-w-full break-words pt-0 lg:pt-0" id="skills">
+                        <h1 class="text-4xl leading-[4rem] text-[var(--secondary-color)] self-start">Skills</h1>
+                        <div class="w-full max-w-full my-5">
+                            <div class="mb-8">
+                                <h2 class="text-xl font-semibold text-[var(--fourth-color)] mb-4 capitalize">Soft Skills (Interpersonal Skills)</h2>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+                                    <div class="mb-2">
+                                        <p class="text-[var(--fourth-color)] font-medium mb-1.5">Communication</p>
+                                        <span class="bg-black/10 block h-2 rounded-[10px] overflow-hidden">
+                                            <span class="h-2 float-left bg-[var(--fourth-color)]" style="width: 60%"></span>
+                                        </span>
+                                    </div>
+                                    <div class="mb-2">
+                                        <p class="text-[var(--fourth-color)] font-medium mb-1.5">Problem-Solving</p>
+                                        <span class="bg-black/10 block h-2 rounded-[10px] overflow-hidden">
+                                            <span class="h-2 float-left bg-[var(--fourth-color)]" style="width: 80%"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-8">
+                                <h2 class="text-xl font-semibold text-[var(--fourth-color)] mb-4 capitalize">Analytical & Research</h2>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+                                    <div class="mb-2">
+                                        <p class="text-[var(--fourth-color)] font-medium mb-1.5">Data Visualization</p>
+                                        <span class="bg-black/10 block h-2 rounded-[10px] overflow-hidden">
+                                            <span class="h-2 float-left bg-[var(--fourth-color)]" style="width: 20%"></span>
+                                        </span>
+                                    </div>
+                                    <div class="mb-2">
+                                        <p class="text-[var(--fourth-color)] font-medium mb-1.5">Market Research</p>
+                                        <span class="bg-black/10 block h-2 rounded-[10px] overflow-hidden">
+                                            <span class="h-2 float-left bg-[var(--fourth-color)]" style="width: 100%"></span>
+                                        </span>
+                                    </div>
+                                    <div class="mb-2">
+                                        <p class="text-[var(--fourth-color)] font-medium mb-1.5">Forecasting & Reporting</p>
+                                        <span class="bg-black/10 block h-2 rounded-[10px] overflow-hidden">
+                                            <span class="h-2 float-left bg-[var(--fourth-color)]" style="width: 60%"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Certifications -->
+                    <section class="my-8 flex flex-col items-center justify-center min-h-fit mx-8 lg:mx-12 max-w-full break-words pt-0 lg:pt-0" id="certifications">
+                        <h1 class="text-4xl leading-[4rem] text-[var(--secondary-color)] self-start">Certifications</h1>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 w-full max-w-full overflow-hidden my-5">
+                            <div class="flex flex-col bg-[var(--background-color)] shadow-lg border border-[var(--fourth-color)] rounded-lg overflow-hidden">
+                                <div class="p-4">
+                                    <h3 class="text-[var(--fourth-color)] text-lg font-semibold mb-1">AWS Cloud Engineer</h3>
+                                    <p class="text-sm font-semibold mb-2 uppercase text-[var(--fourth-color)] opacity-70">Amazon Web Services</p>
+                                    <p class="text-[var(--fourth-color)] text-sm leading-relaxed mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-xs text-[var(--fourth-color)]">2025</span>
+                                        <a href="http://localhost:4810/projectsdashboard/user/documents/1758597722720_Hitanshu_Resume.pdf" target="_blank" class="text-xs py-1.5 px-3 bg-[var(--fourth-color)] text-[var(--background-color)] rounded-[15px] no-underline hover:opacity-80 transition-opacity duration-200">
+                                            View Certificate
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-col bg-[var(--background-color)] shadow-lg border border-[var(--fourth-color)] rounded-lg overflow-hidden">
+                                <div class="p-4">
+                                    <h3 class="text-[var(--fourth-color)] text-lg font-semibold mb-1">Marketing</h3>
+                                    <p class="text-sm font-semibold mb-2 uppercase text-[var(--fourth-color)] opacity-70">Google</p>
+                                    <p class="text-[var(--fourth-color)] text-sm leading-relaxed mb-3">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                                    
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-xs text-[var(--fourth-color)]">2025</span>
+                                        <a href="http://localhost:4810/projectsdashboard/akadmin/documents/1759288505237_Canonical Written Interview.pdf" target="_blank" class="text-xs py-1.5 px-3 bg-[var(--fourth-color)] text-[var(--background-color)] rounded-[15px] no-underline hover:opacity-80 transition-opacity duration-200">
+                                            View Certificate
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Achievements -->
+                    <section class="my-8 flex flex-col items-center justify-center min-h-fit mx-8 lg:mx-12 max-w-full break-words pt-0 lg:pt-0" id="achievements">
+                        <h1 class="text-4xl leading-[4rem] text-[var(--secondary-color)] self-start">Achievements</h1>
+                        <ul class="list-disc list-inside text-[var(--fourth-color)] mt-4 pl-4 w-full">
+                            <li class="mb-3 leading-6">Recognized with "Employee of the Month" award for outstanding performance, commitment to project deadlines, and delivering high-quality solutions that exceeded client expectations.</li>
+                            <li class="mb-3 leading-6">Received company appreciation certificate for contributing to the successful launch of a major product release, ensuring seamless integration and exceptional reliability under tight timelines.</li>
+                        </ul>
+                    </section>
+
+                    <!-- Publications -->
+                    <section class="my-8 flex flex-col items-center justify-center min-h-fit mx-8 lg:mx-12 max-w-full break-words pt-0 lg:pt-0" id="publications">
+                        <h1 class="text-4xl leading-[4rem] text-[var(--secondary-color)] self-start">Publications</h1>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 w-full max-w-full overflow-hidden my-5">
+                            <div class="flex flex-col bg-[var(--background-color)] shadow-lg border border-[var(--fourth-color)] rounded-lg overflow-hidden">
+                                <div class="p-4">
+                                    <h3 class="text-[var(--fourth-color)] text-lg font-semibold mb-1">Machine Learning Paper</h3>
+                                    <p class="text-sm font-semibold mb-2 uppercase text-[var(--fourth-color)] opacity-70">IEEE Conference</p>
+                                    <p class="text-[var(--fourth-color)] text-sm leading-relaxed mb-3">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                                    
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-xs text-[var(--fourth-color)]">2025</span>
+                                        <div class="flex gap-2">
+                                            <a href="http://localhost:4810/projectsdashboard/akadmin/documents/1761181604785_Hitanshu_Resume.pdf" target="_blank" class="text-xs py-1.5 px-3 bg-[var(--fourth-color)] text-[var(--background-color)] rounded-[15px] no-underline hover:opacity-80 transition-opacity duration-200">
+                                                View PDF
+                                            </a>
+                                            <a href="https://ieeexplore.ieee.org/document/9544973" target="_blank" class="text-xs py-1.5 px-3 bg-[var(--fourth-color)] text-[var(--background-color)] rounded-[15px] no-underline hover:opacity-80 transition-opacity duration-200">
+                                                View Paper
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </section>
+
+                    <!-- Contact -->
+                    <section class="my-8 flex flex-col items-center justify-center min-h-fit mx-8 lg:mx-12 max-w-full break-words pt-0 lg:pt-0" id="contact">
+                        <h1 class="text-4xl leading-[4rem] text-[var(--secondary-color)] self-start">Contact</h1>
+                        <form class="w-full max-w-[600px]" onsubmit="handleContactSubmit(event)">
+                            <div class="flex items-center">
+                                <input 
+                                    type="text" 
+                                    name="name"
+                                    required
+                                    class="w-full m-4 text-[var(--fourth-color)] text-base pl-1.5 h-8 bg-transparent border-none border-b-2 border-solid border-[var(--fourth-color)] focus:shadow-[0_0_10px_1px_rgba(0,0,0,0.1)] focus:outline-none placeholder:text-[var(--fourth-color)] placeholder:text-base placeholder:pl-1.5" 
+                                    placeholder="Name" 
+                                />
+                            </div>
+                            <div class="flex items-center">
+                                <input 
+                                    type="email" 
+                                    name="email"
+                                    required
+                                    class="w-full m-4 text-[var(--fourth-color)] text-base pl-1.5 h-8 bg-transparent border-none border-b-2 border-solid border-[var(--fourth-color)] focus:shadow-[0_0_10px_1px_rgba(0,0,0,0.1)] focus:outline-none placeholder:text-[var(--fourth-color)] placeholder:text-base placeholder:pl-1.5" 
+                                    placeholder="Email" 
+                                />
+                            </div>
+                            <div class="flex items-center">
+                                <input 
+                                    type="text" 
+                                    name="subject"
+                                    class="w-full m-4 text-[var(--fourth-color)] text-base pl-1.5 h-8 bg-transparent border-none border-b-2 border-solid border-[var(--fourth-color)] focus:shadow-[0_0_10px_1px_rgba(0,0,0,0.1)] focus:outline-none placeholder:text-[var(--fourth-color)] placeholder:text-base placeholder:pl-1.5" 
+                                    placeholder="Subject" 
+                                />
+                            </div>
+                            <div class="flex items-center">
+                                <textarea 
+                                    name="message"
+                                    required
+                                    class="w-full m-4 text-[var(--fourth-color)] text-base pl-1.5 h-16 border-none border-b-2 border-solid border-[var(--fourth-color)] focus:shadow-[0_0_10px_1px_rgba(0,0,0,0.1)] focus:outline-none placeholder:text-[var(--fourth-color)] placeholder:text-base placeholder:pl-1.5 placeholder:pt-1.5" 
+                                    placeholder="Message..."
+                                ></textarea>
+                            </div>
+                            <div class="flex items-center">
+                                <button 
+                                    type="submit" 
+                                    class="text-[var(--fourth-color)] bg-[var(--background-color)] py-2.5 px-5 my-12 mx-4 rounded-[30px] border-none shadow-[0_0_10px_2px_rgba(0,0,0,0.1)] cursor-pointer hover:text-[var(--background-color)] hover:bg-[var(--fourth-color)] transition-colors duration-200"
+                                    id="submit"
+                                >
+                                    <i class="fas fa-paper-plane mr-2"></i>
+                                    Send Message
+                                </button>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+            </div>
+            
+            <!-- Navigation Menu -->
+            <div class="flex flex-row lg:flex-col items-center justify-center bg-[var(--background-color)] w-auto lg:w-[70px] h-[50px] md:h-[70px] lg:h-auto ml-0 lg:ml-5 rounded-[25px] md:rounded-[50px] lg:rounded-[35px] py-0 lg:py-4 px-2 md:px-4 lg:px-0 shadow-lg fixed lg:static bottom-4 z-[1000]">
+                <a href="#welcome-section" onclick="scrollToSection('welcome-section')" class="text-lg md:text-2xl lg:text-3xl text-[var(--light-grey)] my-0 lg:my-4 mx-2 md:mx-4 lg:mx-0 hover:text-[var(--fourth-color)] transition-colors duration-200 fa-solid fa-house"></a>
+                <a href="#about" onclick="scrollToSection('about')" class="text-lg md:text-2xl lg:text-3xl text-[var(--light-grey)] my-0 lg:my-4 mx-2 md:mx-4 lg:mx-0 hover:text-[var(--fourth-color)] transition-colors duration-200 fa-solid fa-user"></a>
+                <a href="#experience" onclick="scrollToSection('experience')" class="text-lg md:text-2xl lg:text-3xl text-[var(--light-grey)] my-0 lg:my-4 mx-2 md:mx-4 lg:mx-0 hover:text-[var(--fourth-color)] transition-colors duration-200 fa-solid fa-briefcase"></a>
+                <a href="#education" onclick="scrollToSection('education')" class="text-lg md:text-2xl lg:text-3xl text-[var(--light-grey)] my-0 lg:my-4 mx-2 md:mx-4 lg:mx-0 hover:text-[var(--fourth-color)] transition-colors duration-200 fa-solid fa-graduation-cap"></a>
+                <a href="#projects" onclick="scrollToSection('projects')" class="text-lg md:text-2xl lg:text-3xl text-[var(--light-grey)] my-0 lg:my-4 mx-2 md:mx-4 lg:mx-0 hover:text-[var(--fourth-color)] transition-colors duration-200 fa-solid fa-code"></a>
+                <a href="#skills" onclick="scrollToSection('skills')" class="text-lg md:text-2xl lg:text-3xl text-[var(--light-grey)] my-0 lg:my-4 mx-2 md:mx-4 lg:mx-0 hover:text-[var(--fourth-color)] transition-colors duration-200 fa-solid fa-lightbulb"></a>
+                <a href="#certifications" onclick="scrollToSection('certifications')" class="text-lg md:text-2xl lg:text-3xl text-[var(--light-grey)] my-0 lg:my-4 mx-2 md:mx-4 lg:mx-0 hover:text-[var(--fourth-color)] transition-colors duration-200 fa-solid fa-award"></a>
+                <a href="#contact" onclick="scrollToSection('contact')" class="text-lg md:text-2xl lg:text-3xl text-[var(--light-grey)] my-0 lg:my-4 mx-2 md:mx-4 lg:mx-0 hover:text-[var(--fourth-color)] transition-colors duration-200 fa-solid fa-envelope"></a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="py-6 text-[var(--background-color)] mt-4">
+        <p class="text-sm opacity-70">
+            © 2024 Hitanshu Shah. All rights reserved.
+        </p>
+        <p>Powered by <a href="#" target="_blank" class="hover:underline">WebBuilder</a></p>
+    </footer>
+
+    <script>
+        // Smooth scroll to section
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Contact form handler
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const subject = formData.get('subject');
+            const message = formData.get('message');
+            
+            // Create mailto link with form data
+            const emailBody = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+            const mailtoLink = `mailto:hitanshushah10.8@gmail.com?subject=${encodeURIComponent(subject || 'Contact Form')}&body=${encodeURIComponent(emailBody)}`;
+            
+            window.location.href = mailtoLink;
+            
+            // Reset form
+            event.target.reset();
+            
+            // Show success message
+            alert('Thank you for your message! I will get back to you soon.');
+        }
+    </script>
+</body>
+</html>
