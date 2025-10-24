@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebBuilder Demo Player</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .gradient-bg-ocean {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        }
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .feature-card {
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .feature-card.active {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            color: white;
+        }
+        .feature-card.active .text-gray-600 {
+            color: rgba(255, 255, 255, 0.8);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold text-primary-600">WebBuilder Demo</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button onclick="window.close()" class="text-gray-600 hover:text-gray-800 px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                        <i class="fas fa-times mr-2"></i>Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Video Player Section (Left Side) -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="p-6 border-b">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-2">Interactive Demo</h2>
+                        <p class="text-gray-600">Watch how WebBuilder works and explore different features</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="video-container bg-black rounded-lg overflow-hidden">
+                            <video id="demoVideo" controls class="w-full h-full" preload="metadata" autoplay muted>
+                                <source id="videoSource" src="assets/demo/dashboard_web.mov" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="mt-4">
+                            <!-- Video Selection Buttons
+                            <div class="flex items-center space-x-4 mb-4">
+                                <button onclick="switchVideo('dashboard')" class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors">
+                                    <i class="fas fa-tachometer-alt mr-2"></i>Dashboard
+                                </button>
+                                <button onclick="switchVideo('website')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors">
+                                    <i class="fas fa-globe mr-2"></i>Website
+                                </button>
+                                <button onclick="switchVideo('templates')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors">
+                                    <i class="fas fa-palette mr-2"></i>Templates
+                                </button>
+                                <button onclick="switchVideo('pricing')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors">
+                                    <i class="fas fa-dollar-sign mr-2"></i>Pricing
+                                </button>
+                            </div> -->
+                            
+                            <!-- Timestamp Jump Buttons (Dynamic) -->
+                            <div id="timestampButtons" class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+                                <!-- Dashboard buttons (default) -->
+                                <button onclick="jumpToTime(0)" class="timestamp-btn px-4 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors text-center">
+                                    <i class="fas fa-sign-in-alt mb-1 block text-lg"></i>
+                                    <div class="text-sm font-medium">Login</div>
+                                    <div class="text-xs opacity-80">00:00</div>
+                                </button>
+                                <button onclick="jumpToTime(300)" class="timestamp-btn px-4 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors text-center">
+                                    <i class="fas fa-database mb-1 block text-lg"></i>
+                                    <div class="text-sm font-medium">Add Data</div>
+                                    <div class="text-xs opacity-80">05:00</div>
+                                </button>
+                                <button onclick="jumpToTime(480)" class="timestamp-btn px-4 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors text-center">
+                                    <i class="fas fa-project-diagram mb-1 block text-lg"></i>
+                                    <div class="text-sm font-medium">Projects</div>
+                                    <div class="text-xs opacity-80">08:00</div>
+                                </button>
+                                <button onclick="jumpToTime(600)" class="timestamp-btn px-4 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors text-center">
+                                    <i class="fas fa-chart-line mb-1 block text-lg"></i>
+                                    <div class="text-sm font-medium">Board</div>
+                                    <div class="text-xs opacity-80">10:00</div>
+                                </button>
+                            </div>
+                            
+                            <div class="text-sm text-gray-500 text-center">
+                                <i class="fas fa-info-circle mr-1"></i>
+                                Click on features or video buttons to see related content
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Panel (Right Side) -->
+            <div class="lg:col-span-1">
+                <div class="space-y-6">
+                    <!-- Login Feature -->
+                    <div class="feature-card bg-white rounded-xl shadow-lg p-6 cursor-pointer" onclick="showFeature('login')">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-sign-in-alt text-blue-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900">Login</h3>
+                                <p class="text-sm text-gray-600">Access your account</p>
+                            </div>
+                        </div>
+                        <div class="text-sm text-gray-600">
+                            Sign in to your WebBuilder account to manage your websites, templates, and settings.
+                        </div>
+                    </div>
+
+                    <!-- Add Data Feature -->
+                    <div class="feature-card bg-white rounded-xl shadow-lg p-6 cursor-pointer" onclick="showFeature('data')">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-database text-green-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900">Add Data</h3>
+                                <p class="text-sm text-gray-600">Manage your content</p>
+                            </div>
+                        </div>
+                        <div class="text-sm text-gray-600">
+                            Add and organize your content with our smart CMS. Control what's visible to visitors.
+                        </div>
+                    </div>
+
+                    <!-- Select Template Feature -->
+                    <div class="feature-card bg-white rounded-xl shadow-lg p-6 cursor-pointer" onclick="showFeature('template')">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-palette text-purple-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900">Select Template</h3>
+                                <p class="text-sm text-gray-600">Choose your design</p>
+                            </div>
+                        </div>
+                        <div class="text-sm text-gray-600">
+                            Browse our collection of professional templates and find the perfect design for your website.
+                        </div>
+                    </div>
+
+                    <!-- Pricing Plans Feature -->
+                    <div class="feature-card bg-white rounded-xl shadow-lg p-6 cursor-pointer" onclick="showFeature('pricing')">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-dollar-sign text-yellow-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900">Pricing Plans</h3>
+                                <p class="text-sm text-gray-600">Choose your plan</p>
+                            </div>
+                        </div>
+                        <div class="text-sm text-gray-600">
+                            Select the perfect plan for your needs. From free basic features to premium templates.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feature Details Modal -->
+    <div id="featureModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-xl p-8 max-w-2xl w-full mx-4 relative">
+            <button onclick="closeFeatureModal()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl font-bold">
+                <i class="fas fa-times"></i>
+            </button>
+            <div id="featureContent" class="mt-4">
+                <!-- Content will be dynamically loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Video sources and timestamp data
+        const videoData = {
+            'dashboard': {
+                src: 'assets/demo/dashboard_web.mov',
+                title: 'Dashboard Demo',
+                timestamps: [
+                    { name: 'Login', icon: 'fas fa-sign-in-alt', time: 0, display: '00:00' },
+                    { name: 'Add Data', icon: 'fas fa-database', time: 300, display: '05:00' },
+                    { name: 'Projects', icon: 'fas fa-project-diagram', time: 480, display: '08:00' },
+                    { name: 'Board', icon: 'fas fa-chart-line', time: 600, display: '10:00' }
+                ]
+            },
+            'website': {
+                src: 'assets/demo/website_web.mov',
+                title: 'Website Builder',
+                timestamps: [
+                    { name: 'Setup', icon: 'fas fa-cog', time: 0, display: '00:00' },
+                    { name: 'Design', icon: 'fas fa-paint-brush', time: 60, display: '01:00' },
+                    { name: 'Content', icon: 'fas fa-edit', time: 120, display: '02:00' },
+                    { name: 'Publish', icon: 'fas fa-rocket', time: 180, display: '03:00' }
+                ]
+            },
+            'templates': {
+                src: 'assets/demo/templates_web.mov',
+                title: 'Template Selection',
+                timestamps: [
+                    { name: 'Browse', icon: 'fas fa-search', time: 0, display: '00:00' },
+                    { name: 'Preview', icon: 'fas fa-eye', time: 60, display: '01:00' },
+                    { name: 'Customize', icon: 'fas fa-sliders-h', time: 120, display: '02:00' },
+                    { name: 'Apply', icon: 'fas fa-check', time: 180, display: '03:00' }
+                ]
+            },
+            'pricing': {
+                src: 'assets/demo/pricing_web.mov',
+                title: 'Pricing Plans',
+                timestamps: [
+                    { name: 'Basic', icon: 'fas fa-star', time: 0, display: '00:00' },
+                    { name: 'Pro', icon: 'fas fa-crown', time: 5, display: '00:05' },
+                    { name: 'Enterprise', icon: 'fas fa-building', time: 10, display: '00:10' },
+                    { name: 'Compare', icon: 'fas fa-balance-scale', time: 15, display: '00:15' }
+                ]
+            }
+        };
+
+        let currentVideo = 'dashboard';
+
+        // Feature content
+        const featureContent = {
+            login: {
+                title: 'Login to WebBuilder',
+                content: `
+                    <div class="space-y-6">
+                        <div class="text-center">
+                            <i class="fas fa-sign-in-alt text-4xl text-blue-600 mb-4"></i>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Secure Login</h3>
+                            <p class="text-gray-600">Access your WebBuilder account with secure authentication</p>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-6">
+                            <h4 class="font-semibold text-gray-900 mb-3">Login Features:</h4>
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Secure password authentication</li>
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Two-factor authentication support</li>
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Social login options</li>
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Remember me functionality</li>
+                            </ul>
+                        </div>
+                        <div class="flex space-x-4">
+                            <button class="flex-1 bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                                <i class="fas fa-sign-in-alt mr-2"></i>Sign In
+                            </button>
+                            <button class="flex-1 border border-blue-600 text-blue-600 py-3 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-colors">
+                                <i class="fas fa-user-plus mr-2"></i>Create Account
+                            </button>
+                        </div>
+                    </div>
+                `
+            },
+            data: {
+                title: 'Add & Manage Data',
+                content: `
+                    <div class="space-y-6">
+                        <div class="text-center">
+                            <i class="fas fa-database text-4xl text-green-600 mb-4"></i>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Smart Content Management</h3>
+                            <p class="text-gray-600">Easily add and organize your website content</p>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-6">
+                            <h4 class="font-semibold text-gray-900 mb-3">Data Management Features:</h4>
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Drag & drop content editor</li>
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Visibility controls for each piece of content</li>
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Rich text formatting</li>
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Image and media management</li>
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>SEO optimization tools</li>
+                            </ul>
+                        </div>
+                        <div class="flex space-x-4">
+                            <button class="flex-1 bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors">
+                                <i class="fas fa-plus mr-2"></i>Add Content
+                            </button>
+                            <button class="flex-1 border border-green-600 text-green-600 py-3 rounded-lg font-semibold hover:bg-green-600 hover:text-white transition-colors">
+                                <i class="fas fa-eye mr-2"></i>Preview
+                            </button>
+                        </div>
+                    </div>
+                `
+            },
+            template: {
+                title: 'Select Template',
+                content: `
+                    <div class="space-y-6">
+                        <div class="text-center">
+                            <i class="fas fa-palette text-4xl text-purple-600 mb-4"></i>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Choose Your Design</h3>
+                            <p class="text-gray-600">Select from our collection of professional templates</p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-gray-100 rounded-lg p-4 text-center">
+                                <div class="w-16 h-16 bg-blue-200 rounded-lg mx-auto mb-2 flex items-center justify-center">
+                                    <i class="fas fa-building text-blue-600 text-xl"></i>
+                                </div>
+                                <h4 class="font-semibold text-gray-900">Business</h4>
+                                <p class="text-xs text-gray-600">Professional templates</p>
+                            </div>
+                            <div class="bg-gray-100 rounded-lg p-4 text-center">
+                                <div class="w-16 h-16 bg-purple-200 rounded-lg mx-auto mb-2 flex items-center justify-center">
+                                    <i class="fas fa-paint-brush text-purple-600 text-xl"></i>
+                                </div>
+                                <h4 class="font-semibold text-gray-900">Creative</h4>
+                                <p class="text-xs text-gray-600">Artistic designs</p>
+                            </div>
+                            <div class="bg-gray-100 rounded-lg p-4 text-center">
+                                <div class="w-16 h-16 bg-green-200 rounded-lg mx-auto mb-2 flex items-center justify-center">
+                                    <i class="fas fa-user text-green-600 text-xl"></i>
+                                </div>
+                                <h4 class="font-semibold text-gray-900">Personal</h4>
+                                <p class="text-xs text-gray-600">Portfolio templates</p>
+                            </div>
+                            <div class="bg-gray-100 rounded-lg p-4 text-center">
+                                <div class="w-16 h-16 bg-yellow-200 rounded-lg mx-auto mb-2 flex items-center justify-center">
+                                    <i class="fas fa-crown text-yellow-600 text-xl"></i>
+                                </div>
+                                <h4 class="font-semibold text-gray-900">Premium</h4>
+                                <p class="text-xs text-gray-600">Exclusive designs</p>
+                            </div>
+                        </div>
+                        <div class="flex space-x-4">
+                            <button class="flex-1 bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors">
+                                <i class="fas fa-eye mr-2"></i>Browse Templates
+                            </button>
+                            <button class="flex-1 border border-purple-600 text-purple-600 py-3 rounded-lg font-semibold hover:bg-purple-600 hover:text-white transition-colors">
+                                <i class="fas fa-crown mr-2"></i>Premium
+                            </button>
+                        </div>
+                    </div>
+                `
+            },
+            pricing: {
+                title: 'Pricing Plans',
+                content: `
+                    <div class="space-y-6">
+                        <div class="text-center">
+                            <i class="fas fa-dollar-sign text-4xl text-yellow-600 mb-4"></i>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Choose Your Plan</h3>
+                            <p class="text-gray-600">Select the perfect plan for your needs</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-gray-50 rounded-lg p-4">
+                                <h4 class="font-semibold text-gray-900 mb-2">Basic Plan</h4>
+                                <div class="text-2xl font-bold text-gray-900 mb-2">$0<span class="text-sm text-gray-600">/month</span></div>
+                                <ul class="space-y-1 text-sm text-gray-600">
+                                    <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Basic templates</li>
+                                    <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Data management</li>
+                                    <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Custom subdomain</li>
+                                </ul>
+                            </div>
+                            <div class="bg-blue-50 rounded-lg p-4 border-2 border-blue-200">
+                                <h4 class="font-semibold text-gray-900 mb-2">Pro Plan</h4>
+                                <div class="text-2xl font-bold text-gray-900 mb-2">$99<span class="text-sm text-gray-600">/month</span></div>
+                                <ul class="space-y-1 text-sm text-gray-600">
+                                    <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Premium templates</li>
+                                    <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Custom domains</li>
+                                    <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Advanced features</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="flex space-x-4">
+                            <button class="flex-1 bg-yellow-600 text-white py-3 rounded-lg font-semibold hover:bg-yellow-700 transition-colors">
+                                <i class="fas fa-credit-card mr-2"></i>Get Started
+                            </button>
+                            <button class="flex-1 border border-yellow-600 text-yellow-600 py-3 rounded-lg font-semibold hover:bg-yellow-600 hover:text-white transition-colors">
+                                <i class="fas fa-question-circle mr-2"></i>Learn More
+                            </button>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        function switchVideo(videoKey) {
+            const video = document.getElementById('demoVideo');
+            const source = document.getElementById('videoSource');
+            
+            if (videoData[videoKey]) {
+                const videoInfo = videoData[videoKey];
+                currentVideo = videoKey;
+                
+                // Update video source
+                source.src = videoInfo.src;
+                video.load();
+                
+                // Update timestamp buttons
+                updateTimestampButtons(videoInfo.timestamps);
+                
+                // Update video selection buttons
+                document.querySelectorAll('button[onclick^="switchVideo"]').forEach(btn => {
+                    btn.className = 'px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors';
+                });
+                
+                // Highlight the active video button
+                const activeButton = document.querySelector(`button[onclick="switchVideo('${videoKey}')"]`);
+                if (activeButton) {
+                    activeButton.className = 'px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors';
+                }
+                
+                // Try to play the video
+                video.play().catch(e => {
+                    console.log('Autoplay prevented:', e);
+                });
+            }
+        }
+
+        function jumpToTime(seconds) {
+            const video = document.getElementById('demoVideo');
+            video.currentTime = seconds;
+            
+            // Store the current active timestamp for persistence
+            window.currentActiveTimestamp = seconds;
+            
+            // Update timestamp button states
+            document.querySelectorAll('.timestamp-btn').forEach(btn => {
+                btn.className = 'timestamp-btn px-4 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors text-center';
+            });
+            
+            // Find and highlight the clicked button
+            const clickedButton = Array.from(document.querySelectorAll('.timestamp-btn'))
+                .find(btn => btn.onclick.toString().includes(`jumpToTime(${seconds})`));
+            
+            if (clickedButton) {
+                clickedButton.className = 'timestamp-btn px-4 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors text-center';
+            }
+        }
+
+        function updateTimestampButtons(timestamps) {
+            const container = document.getElementById('timestampButtons');
+            container.innerHTML = '';
+            
+            timestamps.forEach((timestamp, index) => {
+                const button = document.createElement('button');
+                const isActive = window.currentActiveTimestamp === timestamp.time;
+                button.className = `timestamp-btn px-4 py-3 ${isActive ? 'bg-primary-600 text-white' : 'bg-gray-200 text-gray-700'} rounded-lg hover:bg-gray-300 transition-colors text-center`;
+                button.onclick = () => jumpToTime(timestamp.time);
+                
+                button.innerHTML = `
+                    <i class="${timestamp.icon} mb-1 block text-lg"></i>
+                    <div class="text-sm font-medium">${timestamp.name}</div>
+                    <div class="text-xs opacity-80">${timestamp.display}</div>
+                `;
+                
+                container.appendChild(button);
+            });
+        }
+
+        function showFeature(featureName) {
+            // Update feature card states
+            document.querySelectorAll('.feature-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+            
+            // Switch to corresponding video and jump to relevant timestamp
+            const videoMapping = {
+                'login': { video: 'dashboard', time: 0 },
+                'data': { video: 'website', time: 0 }, 
+                'template': { video: 'templates', time: 0 },
+                'pricing': { video: 'pricing', time: 0 }
+            };
+            
+            if (videoMapping[featureName]) {
+                const mapping = videoMapping[featureName];
+                switchVideo(mapping.video);
+                // Use a longer timeout to ensure video is loaded before jumping
+                setTimeout(() => {
+                    jumpToTime(mapping.time);
+                    // Force update the button highlighting after a short delay
+                    setTimeout(() => {
+                        updateTimestampButtons(videoData[mapping.video].timestamps);
+                    }, 200);
+                }, 300);
+            }
+        }
+
+        function closeFeatureModal() {
+            const modal = document.getElementById('featureModal');
+            modal.classList.add('hidden');
+            
+            // Remove active state from all feature cards
+            document.querySelectorAll('.feature-card').forEach(card => {
+                card.classList.remove('active');
+            });
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('featureModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeFeatureModal();
+            }
+        });
+
+        // Initialize with dashboard video and autoplay
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize with dashboard video
+            switchVideo('dashboard');
+            
+            // Add video time update listener to track current position
+            const video = document.getElementById('demoVideo');
+            video.addEventListener('timeupdate', function() {
+                updateCurrentSectionHighlight();
+            });
+        });
+
+        function updateCurrentSectionHighlight() {
+            const video = document.getElementById('demoVideo');
+            const currentTime = video.currentTime;
+            const currentVideoData = videoData[currentVideo];
+            
+            if (currentVideoData && currentVideoData.timestamps) {
+                // Find the current section based on video time
+                let activeTimestamp = currentVideoData.timestamps[0].time; // Default to first
+                
+                for (let i = currentVideoData.timestamps.length - 1; i >= 0; i--) {
+                    if (currentTime >= currentVideoData.timestamps[i].time) {
+                        activeTimestamp = currentVideoData.timestamps[i].time;
+                        break;
+                    }
+                }
+                
+                // Update highlighting if the active section changed
+                if (window.currentActiveTimestamp !== activeTimestamp) {
+                    window.currentActiveTimestamp = activeTimestamp;
+                    updateTimestampButtons(currentVideoData.timestamps);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
